@@ -597,27 +597,98 @@
     .fu.vis{opacity:1;transform:none}
 
     /* ─── RESPONSIVE ─── */
+
+    /* ── Tablet (≤900px) ── */
     @media(max-width:900px){
+      section{padding:70px 4%}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
       .layers-grid,.about-grid,.loc-grid{grid-template-columns:1fr}
       .foot-grid{grid-template-columns:1fr 1fr}
       .ig-grid{grid-template-columns:repeat(2,1fr)}
-      .hero-content{padding:0 1.5rem;margin-top:4rem}
+      .hero-content{padding:120px 2rem 0 4%;max-width:100%}
+      .hero-content h1{font-size:clamp(1.5rem,3.5vw,2.6rem)}
+      .tab-row{gap:.35rem}
+      .tab{padding:.42rem .9rem;font-size:.77rem}
+      .tab-row-label{font-size:.58rem;min-width:44px}
+      .menu-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
     }
-    @media(max-width:600px){
+
+    /* ── Mobile (≤640px) ── */
+    @media(max-width:640px){
+      /* NAV */
       .nav-links{display:none}
       .nav-links.open{
         display:flex;flex-direction:column;position:fixed;
         inset:65px 0 0;background:rgba(9,0,15,.98);
-        padding:2rem;gap:.4rem;z-index:8999
+        padding:2rem 1.5rem;gap:.3rem;z-index:8999;overflow-y:auto
       }
+      .nav-links.open a{padding:.8rem 0;font-size:1.1rem;border-bottom:1px solid rgba(139,47,232,.1)}
       .ham{display:flex}
-      .foot-grid{grid-template-columns:1fr}
-      .stats-grid{grid-template-columns:repeat(2,1fr)}
-      .hero-content h1{font-size:1.45rem;white-space:normal}
-      .hero-sub,.pills,.ctas{animation:none;opacity:1;transform:none}
-      .badge{animation:none;opacity:1;transform:none}
-      #h1-line2{animation:none;opacity:1;transform:none}
+
+      /* HERO */
+      section{padding:55px 4%}
+      .hero-content{
+        padding:100px 1.3rem 0 1.3rem;
+        max-width:100%;text-align:left
+      }
+      .hero-content h1{
+        font-size:1.55rem;white-space:normal;letter-spacing:-.5px;line-height:1.2
+      }
+      .hero-sub{font-size:.88rem;margin-top:.7rem}
+      .badge{font-size:.7rem;padding:.35rem .9rem;animation:none;opacity:1;transform:none}
+      .pills{flex-wrap:wrap;gap:.4rem;animation:none;opacity:1;transform:none}
+      .pill{font-size:.72rem;padding:.3rem .75rem}
+      .ctas{flex-direction:column;gap:.65rem;animation:none;opacity:1;transform:none}
+      .ctas .btn{width:100%;text-align:center;padding:.85rem 1.5rem}
+      #h1-line1,#h1-line2{animation:none;opacity:1;transform:none}
+      .hero-sub{animation:none;opacity:1;transform:none}
+
+      /* MENU TABS */
+      .tab-rows{gap:.4rem;margin:1.2rem 0 2rem}
+      .tab-row{gap:.3rem;flex-wrap:wrap}
+      .tab-row-label{font-size:.55rem;min-width:38px;padding-top:.1rem}
+      .tab{padding:.38rem .75rem;font-size:.72rem;border-radius:50px}
+      .ltd-tab{font-size:.72rem}
+
+      /* MENU GRID */
+      .menu-grid{grid-template-columns:1fr;gap:1rem}
+      .mc{border-radius:16px}
+      .mc-img{height:180px}
+
+      /* LAYERS / ABOUT / STATS */
+      .layers-grid,.about-grid{grid-template-columns:1fr;gap:2rem}
+      .stats-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+      .stat-n{font-size:2.4rem}
+      #about-canvas{display:none}
+
+      /* LOCATIONS */
+      .loc-grid{grid-template-columns:1fr;gap:1.5rem}
+
+      /* PLATFORMS / ORDER */
+      .platforms{flex-direction:column;align-items:center;gap:1rem}
+      .plat{width:100%;max-width:320px;padding:1.4rem 2rem}
+
+      /* IG GRID */
+      .ig-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+
+      /* FOOTER */
+      .foot-grid{grid-template-columns:1fr;gap:1.8rem}
+      .foot-bottom{flex-direction:column;gap:.8rem;text-align:center}
+      .foot-about p{max-width:100%}
+
+      /* SECTION HEADINGS */
+      .sec-h{font-size:clamp(1.7rem,6vw,2.4rem)}
+      .sec-p{font-size:.88rem}
+    }
+
+    /* ── Small phones (≤400px) ── */
+    @media(max-width:400px){
+      .hero-content h1{font-size:1.35rem}
+      .ig-grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr}
+      .tab{padding:.33rem .65rem;font-size:.68rem}
+      .sec-h{font-size:1.6rem}
+      .ctas .btn{font-size:.85rem}
     }
   </style>
 </head>
