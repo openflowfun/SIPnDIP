@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIP N DIP • Authentic Açaí & Dessert Bar • Christchurch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --p1:#8B2FE8; --p2:#6A1FBA; --p3:#4A148C;
+      --green:#00E676; --gm:#00C853;
+      --pink:#FF4081; --gold:#FFD700;
+      --dark:#09000F; --dark2:#0E0018; --dark3:#140020;
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--dark);color:#fff;overflow-x:hidden
+    }
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:#05000A}
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(180deg,var(--p1),var(--green));border-radius:3px
+    }
+
+    /* ─── NAV ─── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:9000;
+      padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;
+      background:transparent;backdrop-filter:blur(0px);
+      border-bottom:1px solid transparent;transition:all .4s cubic-bezier(.4,0,.2,1)
+    }
+    nav.scrolled{
+      padding:.7rem 5%;
+      background:rgba(9,0,15,.92);backdrop-filter:blur(24px);
+      border-bottom:1px solid rgba(139,47,232,.18);
+      box-shadow:0 4px 40px rgba(90,0,160,.3)
+    }
+    nav.hidden{transform:translateY(-100%)}
+    .logo-wrap{display:flex;align-items:center;gap:.7rem}
+    .logo-img{width:36px;height:36px;border-radius:50%;object-fit:cover;
+      border:1.5px solid rgba(180,100,255,.35);
+      box-shadow:0 0 12px rgba(139,47,232,.4)}
+    .logo{font-size:1.75rem;font-weight:900;letter-spacing:-1px;
+      background:linear-gradient(130deg,#d580ff 0%,var(--green) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;align-items:center;gap:.2rem}
+    .nav-links a{color:rgba(255,255,255,.72);text-decoration:none;padding:.42rem .9rem;
+      border-radius:50px;font-size:.875rem;font-weight:500;transition:all .25s}
+    .nav-links a:hover{color:#fff;background:rgba(139,47,232,.18)}
+    .nav-links .order-btn{
+      background:linear-gradient(135deg,var(--p1),var(--gm));
+      color:#fff;font-weight:700;
+      box-shadow:0 0 20px rgba(139,47,232,.35)
+    }
+    .nav-links .order-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 28px rgba(139,47,232,.55)
+    }
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+    .ham span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s;display:block}
+
+    /* ─── HERO ─── */
+    .hero{
+      height:100vh;min-height:700px;position:relative;
+      display:flex;align-items:center;overflow:hidden;
+      background:var(--dark)
+    }
+    .hero-video{
+      position:absolute;inset:0;width:100%;height:100%;z-index:0;
+      object-fit:cover;object-position:center
+    }
+    #hero-canvas{
+      position:absolute;inset:0;width:100%;height:100%;z-index:1;
+      pointer-events:none
+    }
+    .hero-overlay{
+      position:absolute;inset:0;z-index:2;pointer-events:none;
+      background:
+        linear-gradient(to right,rgba(9,0,15,.82) 0%,rgba(9,0,15,.5) 50%,rgba(9,0,15,.15) 100%),
+        linear-gradient(to top,rgba(9,0,15,.8) 0%,transparent 45%),
+        linear-gradient(to bottom,rgba(9,0,15,.55) 0%,transparent 25%)
+    }
+    .hero-content{
+      position:relative;z-index:4;max-width:620px;padding:100px 2rem 0 6%
+    }
+
+    /* Badge */
+    .badge{
+      display:inline-flex;align-items:center;gap:7px;
+      background:rgba(139,47,232,.15);border:1px solid rgba(139,47,232,.4);
+      border-radius:50px;padding:.35rem 1rem;font-size:.74rem;font-weight:700;
+      color:#c77dff;letter-spacing:.8px;text-transform:uppercase;margin-bottom:1.3rem;
+      opacity:0;transform:translateY(-14px);
+      animation:badgeIn .6s cubic-bezier(.22,1,.36,1) .2s forwards;
+      box-shadow:0 0 18px rgba(139,47,232,.2)
+    }
+    @keyframes badgeIn{to{opacity:1;transform:none}}
+
+    /* Headline */
+    .hero-content h1{
+      font-size:clamp(1.6rem,2.8vw,2.9rem);font-weight:900;line-height:1.15;
+      letter-spacing:-1px;margin-bottom:.4rem;color:#fff;
+      text-shadow:0 2px 40px rgba(0,0,0,.6);white-space:nowrap
+    }
+    .char-wrap{display:inline-block;overflow:hidden;vertical-align:bottom;line-height:1.2}
+    .char{
+      display:inline-block;opacity:0;
+      transform:translateY(110%) rotate(4deg);
+      animation:charUp .55s cubic-bezier(.22,1,.36,1) forwards
+    }
+    @keyframes charUp{to{opacity:1;transform:translateY(0) rotate(0deg)}}
+
+    #h1-line2{
+      opacity:0;transform:translateY(22px);
+      animation:line2In .7s cubic-bezier(.22,1,.36,1) 1.3s forwards
+    }
+    @keyframes line2In{to{opacity:1;transform:none}}
+
+    .grad-shimmer{
+      background:linear-gradient(110deg,
+        #d580ff 0%,#b44fff 15%,#00E676 35%,
+        #ffffff 50%,#00E676 65%,#b44fff 80%,#d580ff 100%);
+      background-size:250% 100%;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:shimmerSweep 3.5s ease-in-out 2s infinite
+    }
+    @keyframes shimmerSweep{
+      0%{background-position:100% 50%}
+      50%{background-position:0% 50%}
+      100%{background-position:100% 50%}
+    }
+
+    .hero-sub{
+      font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,.72);
+      margin-bottom:2rem;max-width:460px;
+      opacity:0;transform:translateY(18px);
+      animation:fadeUp .7s cubic-bezier(.22,1,.36,1) 1.9s forwards
+    }
+    .pills{
+      display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:2.2rem;
+      opacity:0;transform:translateY(14px);
+      animation:fadeUp .6s cubic-bezier(.22,1,.36,1) 2.2s forwards
+    }
+    .pill{
+      background:rgba(139,47,232,.12);border:1px solid rgba(139,47,232,.3);
+      border-radius:50px;padding:.3rem .85rem;font-size:.78rem;font-weight:500;
+      color:rgba(255,255,255,.82);backdrop-filter:blur(8px)
+    }
+    .pill.g{border-color:rgba(0,230,118,.35);color:var(--green);background:rgba(0,230,118,.08)}
+    .pill.p{border-color:rgba(180,79,255,.35);color:#d580ff;background:rgba(139,47,232,.1)}
+    .pill.pk{border-color:rgba(255,64,129,.35);color:var(--pink);background:rgba(255,64,129,.08)}
+    .ctas{
+      display:flex;gap:1rem;flex-wrap:wrap;align-items:center;
+      opacity:0;transform:translateY(14px);
+      animation:fadeUp .6s cubic-bezier(.22,1,.36,1) 2.4s forwards
+    }
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:7px;padding:.85rem 2rem;
+      border-radius:50px;font-size:.95rem;font-weight:700;text-decoration:none;
+      transition:all .32s cubic-bezier(.4,0,.2,1);cursor:pointer;border:none
+    }
+    .btn-g{
+      background:linear-gradient(135deg,var(--gm),#00796B);color:#000;
+      box-shadow:0 0 25px rgba(0,200,83,.3)
+    }
+    .btn-g:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 16px 38px rgba(0,200,83,.5)}
+    .btn-o{
+      background:rgba(139,47,232,.15);color:#fff;
+      border:2px solid rgba(139,47,232,.4);backdrop-filter:blur(10px)
+    }
+    .btn-o:hover{
+      border-color:rgba(180,100,255,.7);background:rgba(139,47,232,.25);
+      transform:translateY(-2px);box-shadow:0 8px 25px rgba(139,47,232,.35)
+    }
+    .scroll-hint{
+      position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+      z-index:5;display:flex;flex-direction:column;align-items:center;gap:7px;
+      animation:bob 2s infinite;cursor:pointer;color:rgba(200,150,255,.5);
+      font-size:.7rem;letter-spacing:1.2px;text-transform:uppercase
+    }
+    .scroll-arrow{width:22px;height:22px;
+      border-right:2px solid rgba(200,150,255,.4);border-bottom:2px solid rgba(200,150,255,.4);
+      transform:rotate(45deg)}
+    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+    /* ─── MARQUEE ─── */
+    .mq-wrap{
+      padding:1.1rem 0;overflow:hidden;
+      background:linear-gradient(90deg,#1a0035 0%,#0d0025 30%,#160030 70%,#0d001e 100%);
+      border-top:1px solid rgba(139,47,232,.2);border-bottom:1px solid rgba(139,47,232,.2)
+    }
+    .mq-track{display:flex;gap:2.5rem;animation:mq 22s linear infinite;white-space:nowrap}
+    .mq-track span{font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+      color:rgba(200,150,255,.5);flex-shrink:0}
+    .mq-track .a{color:var(--green)}
+    @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ─── SHARED ─── */
+    section{padding:100px 5%;position:relative}
+    .inner{max-width:1200px;margin:0 auto}
+    .sec-label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:3px;
+      text-transform:uppercase;color:var(--green);margin-bottom:.9rem}
+    .sec-h{font-size:clamp(1.9rem,3.5vw,3rem);font-weight:800;letter-spacing:-1px;
+      line-height:1.15;margin-bottom:1rem}
+    .sec-p{font-size:1rem;color:rgba(255,255,255,.55);max-width:520px;line-height:1.72}
+
+    /* ─── MENU ─── */
+    #menu{
+      background:linear-gradient(160deg,#0F0020 0%,#09000F 60%,#0D001A 100%);
+    }
+    /* Floating purple glow behind menu */
+    #menu::before{
+      content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+      width:700px;height:400px;
+      background:radial-gradient(ellipse,rgba(139,47,232,.12) 0%,transparent 70%);
+      pointer-events:none
+    }
+    .tab-rows{margin:2rem 0 3rem;display:flex;flex-direction:column;gap:.55rem}
+    .tab-row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+    .tab-row-label{
+      font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+      color:rgba(200,150,255,.32);white-space:nowrap;min-width:52px
+    }
+    .tab{
+      padding:.48rem 1.1rem;border-radius:50px;font-size:.8rem;font-weight:600;
+      cursor:pointer;transition:all .25s;border:1px solid rgba(139,47,232,.22);
+      color:rgba(200,150,255,.65);background:rgba(139,47,232,.07);
+      white-space:nowrap
+    }
+    .tab.active,.tab:hover{
+      background:linear-gradient(135deg,var(--p1),var(--gm));
+      color:#fff;border-color:transparent;
+      box-shadow:0 6px 20px rgba(139,47,232,.35)
+    }
+    .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+    .mc{
+      background:rgba(139,47,232,.06);
+      border:1px solid rgba(139,47,232,.14);
+      border-radius:20px;overflow:hidden;
+      transition:transform .38s cubic-bezier(.4,0,.2,1),box-shadow .38s,border-color .38s;
+      display:none
+    }
+    .mc.show{display:block}
+    .mc:hover{
+      transform:translateY(-11px);
+      box-shadow:0 28px 65px rgba(100,20,200,.3);
+      border-color:rgba(139,47,232,.45)
+    }
+    .mc-img{
+      width:100%;height:170px;display:flex;align-items:center;justify-content:center;
+      font-size:3.5rem;position:relative;overflow:hidden
+    }
+    .mc-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .mc:hover .mc-img img{transform:scale(1.06)}
+    .mc-img::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent 40%,rgba(9,0,15,.7) 100%)}
+    .mc-body{padding:.9rem 1rem}
+    .mc-tag{display:inline-block;font-size:.67rem;font-weight:700;letter-spacing:1.5px;
+      text-transform:uppercase;padding:.22rem .65rem;border-radius:50px;margin-bottom:.7rem}
+    .t-sig{background:rgba(180,79,255,.14);color:#d580ff;border:1px solid rgba(180,79,255,.28)}
+    .t-dub{background:rgba(255,215,0,.1);color:#ffd700;border:1px solid rgba(255,215,0,.25)}
+    .t-acai{background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.25)}
+    .t-new{background:rgba(255,64,129,.1);color:var(--pink);border:1px solid rgba(255,64,129,.25)}
+    .t-brownie{background:rgba(180,100,20,.15);color:#e8a840;border:1px solid rgba(200,130,30,.3)}
+    .t-cake{background:rgba(255,150,180,.1);color:#ffb3c6;border:1px solid rgba(255,150,180,.28)}
+    .t-drink{background:rgba(0,200,230,.08);color:#40d8e8;border:1px solid rgba(0,200,230,.22)}
+    .mc-soon{
+      opacity:.55;pointer-events:none
+    }
+    .mc-soon .mc-img{
+      font-size:3rem;
+      background:linear-gradient(135deg,#0e0018,#0a0a18) !important
+    }
+    .soon-tag{
+      display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;
+      color:rgba(200,150,255,.5);letter-spacing:1px;margin-bottom:.5rem
+    }
+    .tab.ltd-tab{
+      background:rgba(255,215,0,.07);color:#ffd700;
+      border-color:rgba(255,215,0,.3)
+    }
+    .tab.ltd-tab.active,.tab.ltd-tab:hover{
+      background:linear-gradient(135deg,#c9900a,#7a5500);color:#fff;border-color:transparent
+    }
+    .mc-body h3{font-size:1.1rem;font-weight:700;margin-bottom:.45rem}
+    .mc-body p{font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:.95rem}
+    .mc-foot{display:flex;align-items:center;justify-content:space-between}
+    .price{font-size:1.35rem;font-weight:800;color:var(--green)}
+    .order-btn-sm{
+      background:linear-gradient(135deg,var(--p1),var(--gm));color:#fff;
+      border:none;border-radius:50px;padding:.4rem 1.1rem;font-size:.8rem;font-weight:700;
+      cursor:pointer;text-decoration:none;transition:all .28s
+    }
+    .order-btn-sm:hover{transform:scale(1.08);box-shadow:0 8px 22px rgba(139,47,232,.45)}
+
+    /* ─── FULL MENU ACCORDION ─── */
+    .full-menu-wrap{margin-top:4rem}
+    .full-menu-title{
+      display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem
+    }
+    .full-menu-title h3{
+      font-size:1.4rem;font-weight:800;letter-spacing:-.5px
+    }
+    .full-menu-title .fml{
+      flex:1;height:1px;background:linear-gradient(90deg,rgba(139,47,232,.4),transparent)
+    }
+    .fm-grid{display:flex;flex-direction:column;gap:.7rem}
+    .fm-sec{
+      background:rgba(139,47,232,.06);
+      border:1px solid rgba(139,47,232,.14);
+      border-radius:16px;overflow:hidden;transition:border-color .3s
+    }
+    .fm-sec.open{border-color:rgba(139,47,232,.35)}
+    .fm-head{
+      display:flex;align-items:center;gap:.9rem;
+      padding:1.1rem 1.4rem;cursor:pointer;
+      transition:background .25s;user-select:none
+    }
+    .fm-head:hover{background:rgba(139,47,232,.1)}
+    .fm-icon{font-size:1.5rem;flex-shrink:0}
+    .fm-name{flex:1;font-weight:700;font-size:.95rem}
+    .fm-count{
+      font-size:.72rem;font-weight:600;color:rgba(200,150,255,.5);
+      background:rgba(139,47,232,.1);border:1px solid rgba(139,47,232,.2);
+      border-radius:50px;padding:.2rem .65rem;flex-shrink:0
+    }
+    .fm-badge-ltd{
+      font-size:.68rem;font-weight:700;letter-spacing:.8px;
+      color:#ffd700;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);
+      border-radius:50px;padding:.18rem .55rem;flex-shrink:0
+    }
+    .fm-chevron{
+      width:18px;height:18px;flex-shrink:0;
+      border-right:2px solid rgba(180,100,255,.4);border-bottom:2px solid rgba(180,100,255,.4);
+      transform:rotate(45deg);transition:transform .3s cubic-bezier(.4,0,.2,1);margin-top:-4px
+    }
+    .fm-sec.open .fm-chevron{transform:rotate(-135deg);margin-top:4px}
+    .fm-body{
+      max-height:0;overflow:hidden;
+      transition:max-height .45s cubic-bezier(.4,0,.2,1)
+    }
+    .fm-sec.open .fm-body{max-height:2000px}
+    .fm-inner{padding:.2rem 1.4rem 1.2rem}
+    .fm-item{
+      display:flex;align-items:flex-start;gap:1rem;
+      padding:.85rem 0;
+      border-bottom:1px solid rgba(139,47,232,.09)
+    }
+    .fm-item:last-child{border-bottom:none}
+    .fm-info{flex:1}
+    .fm-item-name{font-size:.9rem;font-weight:700;margin-bottom:.22rem;display:flex;align-items:center;gap:.5rem}
+    .fm-pop{
+      font-size:.62rem;font-weight:700;letter-spacing:.6px;
+      color:var(--pink);background:rgba(255,64,129,.08);border:1px solid rgba(255,64,129,.25);
+      border-radius:50px;padding:.1rem .45rem
+    }
+    .fm-ltd{
+      font-size:.62rem;font-weight:700;letter-spacing:.6px;
+      color:#ffd700;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);
+      border-radius:50px;padding:.1rem .45rem
+    }
+    .fm-desc{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.55}
+    .fm-right{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;flex-shrink:0}
+    .fm-price{font-size:1rem;font-weight:800;color:var(--green);white-space:nowrap}
+    .fm-order{
+      font-size:.72rem;font-weight:700;color:rgba(200,150,255,.7);
+      text-decoration:none;background:rgba(139,47,232,.1);
+      border:1px solid rgba(139,47,232,.22);border-radius:50px;
+      padding:.22rem .65rem;transition:all .22s;white-space:nowrap
+    }
+    .fm-order:hover{color:#fff;background:rgba(139,47,232,.28);border-color:rgba(180,100,255,.45)}
+
+    /* ─── LAYERS ─── */
+    .layer-tabs{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem}
+    .ltab{
+      padding:.45rem 1.1rem;background:rgba(139,47,232,.08);
+      border:1px solid rgba(139,47,232,.2);border-radius:50px;
+      color:rgba(200,150,255,.6);font-size:.8rem;font-weight:600;cursor:none;
+      transition:all .25s
+    }
+    .ltab:hover{border-color:rgba(180,100,255,.4);color:#fff}
+    .ltab.active{
+      background:rgba(139,47,232,.22);border-color:rgba(180,100,255,.55);
+      color:#fff;box-shadow:0 0 16px rgba(139,47,232,.25)
+    }
+    /* ─── LAYERS ─── */
+    #layers{
+      background:linear-gradient(180deg,#09000F 0%,#0C0018 100%);
+      overflow:hidden
+    }
+    #layers::after{
+      content:'';position:absolute;bottom:-150px;left:50%;transform:translateX(-50%);
+      width:600px;height:400px;
+      background:radial-gradient(ellipse,rgba(139,47,232,.1) 0%,transparent 70%);
+      pointer-events:none
+    }
+    .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .layer-list{display:flex;flex-direction:column;gap:1rem;margin-top:2.5rem}
+    .li{
+      display:flex;align-items:center;gap:1.1rem;
+      padding:1.1rem 1.3rem;
+      background:rgba(139,47,232,.06);
+      border:1px solid rgba(139,47,232,.14);border-radius:15px;transition:all .32s
+    }
+    .li:hover{
+      background:rgba(139,47,232,.13);
+      border-color:rgba(180,100,255,.35);transform:translateX(7px);
+      box-shadow:0 8px 30px rgba(139,47,232,.2)
+    }
+    .li-icon{font-size:1.9rem;flex-shrink:0}
+    .li h4{font-size:.95rem;font-weight:700;margin-bottom:.18rem}
+    .li p{font-size:.82rem;color:rgba(255,255,255,.45)}
+    .cup-visual{
+      background:rgba(139,47,232,.05);
+      border:1px solid rgba(139,47,232,.15);
+      border-radius:22px;padding:1.8rem 1.5rem;display:flex;flex-direction:column;gap:7px;
+      box-shadow:inset 0 0 60px rgba(139,47,232,.07)
+    }
+    .cup-lbl{text-align:center;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
+      color:rgba(180,100,255,.38);margin-bottom:.6rem}
+    .lb{
+      width:100%;padding:.9rem 1.2rem;border-radius:10px;text-align:center;
+      font-size:.87rem;font-weight:600;opacity:0;transform:translateY(18px);
+      transition:opacity .55s ease,transform .55s ease
+    }
+    .lb.vis{opacity:1;transform:none}
+    .lb1{background:rgba(196,154,85,.18);border:1px solid rgba(196,154,85,.32);color:#D4A96A}
+    .lb2{background:rgba(50,22,8,.5);border:1px solid rgba(110,55,18,.38);color:#C98040}
+    .lb3{background:rgba(200,20,60,.12);border:1px solid rgba(200,20,60,.28);color:#FF7090}
+    .lb4{background:rgba(100,180,50,.14);border:1px solid rgba(100,180,50,.32);color:#8FD45A}
+    .lb5{background:rgba(180,100,255,.1);border:1px solid rgba(180,100,255,.22);color:#d4aaff}
+
+    /* ─── LOCATIONS ─── */
+    #locations{background:linear-gradient(160deg,#0E001C 0%,#09000F 100%)}
+    .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+    .loc-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .loc-card{
+      background:rgba(139,47,232,.06);border:1px solid rgba(139,47,232,.15);
+      border-radius:20px;padding:2rem 2rem 1.8rem;transition:all .35s;
+      position:relative;overflow:hidden
+    }
+    .loc-card::before{
+      content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;
+      background:radial-gradient(circle,rgba(139,47,232,.2),transparent 70%);
+      pointer-events:none
+    }
+    .loc-card:hover{
+      border-color:rgba(180,100,255,.4);transform:translateY(-6px);
+      box-shadow:0 20px 60px rgba(100,20,200,.2)
+    }
+    .loc-icon{font-size:2.5rem;margin-bottom:1.1rem}
+    .loc-card h3{font-size:1.25rem;font-weight:700;margin-bottom:.4rem}
+    .loc-card .addr{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:1.3rem}
+    .loc-btns{display:flex;gap:.7rem;flex-wrap:wrap}
+    .loc-btn{
+      display:inline-flex;align-items:center;gap:6px;padding:.42rem 1rem;
+      border-radius:50px;font-size:.78rem;font-weight:600;text-decoration:none;
+      transition:all .25s;border:1px solid rgba(139,47,232,.25);color:rgba(200,150,255,.75)
+    }
+    .loc-btn:hover{border-color:var(--green);color:var(--green);background:rgba(0,230,118,.07)}
+    .loc-btn.primary{background:rgba(0,200,83,.1);border-color:rgba(0,200,83,.35);color:var(--green)}
+
+    /* ─── STATS ─── */
+    #stats{
+      background:linear-gradient(135deg,#160030 0%,#09000F 50%,#0d0020 100%);
+      border-top:1px solid rgba(139,47,232,.15);border-bottom:1px solid rgba(139,47,232,.15);
+      position:relative;overflow:hidden
+    }
+    #stats::before{
+      content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:800px;height:300px;
+      background:radial-gradient(ellipse,rgba(139,47,232,.1) 0%,transparent 65%);
+      pointer-events:none
+    }
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center}
+    .stat{padding:2rem 1rem;position:relative}
+    .stat::after{
+      content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+      width:40px;height:2px;background:linear-gradient(90deg,transparent,var(--p1),transparent)
+    }
+    .stat-n{
+      font-size:3.2rem;font-weight:900;line-height:1;
+      background:linear-gradient(135deg,#d580ff,var(--green));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:.45rem
+    }
+    .stat-l{font-size:.87rem;color:rgba(200,150,255,.5);font-weight:500}
+
+    /* ─── ABOUT ─── */
+    #about{
+      background:linear-gradient(160deg,#0C0018 0%,#09000F 60%,#100018 100%);
+      position:relative;overflow:hidden;padding:120px 5%
+    }
+    #about::before{
+      content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 30%, rgba(120,30,220,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 40% at 15% 70%, rgba(0,200,83,.10) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 35% at 50% 50%, rgba(180,20,120,.08) 0%, transparent 55%);
+      animation: aboutGlow 8s ease-in-out infinite alternate
+    }
+    @keyframes aboutGlow{
+      0%{opacity:.7} 50%{opacity:1} 100%{opacity:.6}
+    }
+    .about-canvas-tint{
+      position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:
+        linear-gradient(to right,rgba(9,0,15,.92) 0%,rgba(9,0,15,.72) 50%,rgba(9,0,15,.25) 100%),
+        linear-gradient(to bottom,rgba(9,0,15,.5) 0%,transparent 25%,transparent 75%,rgba(9,0,15,.5) 100%)
+    }
+    .about-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .about-photo{
+      border-radius:24px;overflow:hidden;border:1px solid rgba(139,47,232,.2);
+      box-shadow:0 30px 80px rgba(90,0,160,.4),0 0 0 1px rgba(180,100,255,.08);aspect-ratio:1
+    }
+    .about-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .about-photo:hover img{transform:scale(1.04)}
+    .about-text .sec-h{margin-bottom:1.4rem}
+    .about-text p{color:rgba(255,255,255,.6);line-height:1.8;font-size:.97rem;margin-bottom:1.1rem}
+    .checks{display:flex;flex-direction:column;gap:.7rem;margin-top:1.8rem}
+    .ck{display:flex;align-items:center;gap:.75rem;font-size:.92rem;color:rgba(255,255,255,.8);font-weight:500}
+    .ck::before{
+      content:'✓';width:20px;height:20px;border-radius:50%;flex-shrink:0;
+      background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.32);
+      color:var(--green);display:flex;align-items:center;justify-content:center;
+      font-size:.65rem;font-weight:800
+    }
+
+    /* ─── ORDER ─── */
+    #order{
+      background:linear-gradient(135deg,rgba(139,47,232,.1) 0%,rgba(9,0,15,1) 50%,rgba(0,200,83,.06) 100%);
+      position:relative;overflow:hidden
+    }
+    #order::before{
+      content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:600px;height:300px;
+      background:radial-gradient(ellipse,rgba(139,47,232,.12) 0%,transparent 60%);
+      pointer-events:none
+    }
+    .order-inner{text-align:center;max-width:680px;margin:0 auto;position:relative;z-index:1}
+    .order-inner .sec-h{margin-bottom:.9rem}
+    .order-inner > p{color:rgba(255,255,255,.52);margin-bottom:2.8rem;font-size:1rem;line-height:1.7}
+    .platforms{display:flex;gap:1.3rem;justify-content:center;flex-wrap:wrap}
+    .plat{
+      display:flex;flex-direction:column;align-items:center;gap:.55rem;
+      padding:1.7rem 2.3rem;background:rgba(139,47,232,.07);
+      border:1px solid rgba(139,47,232,.18);border-radius:18px;
+      text-decoration:none;color:#fff;transition:all .32s;min-width:150px;
+      position:relative;overflow:hidden
+    }
+    .plat::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(139,47,232,.15),rgba(0,200,83,.08));
+      opacity:0;transition:opacity .32s
+    }
+    .plat:hover::before{opacity:1}
+    .plat:hover{transform:translateY(-8px);border-color:rgba(180,100,255,.4);
+      box-shadow:0 20px 50px rgba(100,20,200,.25)}
+    .plat .pi{font-size:2rem;position:relative;z-index:1}
+    .plat .pn{font-weight:700;font-size:1rem;position:relative;z-index:1}
+    .plat .ps{font-size:.75rem;color:rgba(200,150,255,.45);position:relative;z-index:1}
+
+    /* ─── INSTAGRAM ─── */
+    .ig-reel{position:relative;overflow:hidden}
+    .ig-vid{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;transition:transform .38s
+    }
+    .ig-card:hover .ig-vid{transform:scale(1.04)}
+    .reel-icon{
+      position:absolute;top:.5rem;right:.5rem;z-index:3;
+      background:rgba(0,0,0,.55);backdrop-filter:blur(6px);
+      color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.5px;
+      padding:.22rem .55rem;border-radius:6px;
+      border:1px solid rgba(255,255,255,.15)
+    }
+    .ig-label{
+      position:absolute;bottom:0;left:0;right:0;z-index:3;
+      padding:.5rem .7rem;
+      background:linear-gradient(0deg,rgba(9,0,15,.85) 0%,transparent 100%);
+      font-size:.7rem;font-weight:600;color:rgba(255,255,255,.75);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      opacity:0;transition:opacity .28s
+    }
+    .ig-card:hover .ig-label{opacity:1}
+    
+    #social{background:linear-gradient(180deg,#09000F,#0D001A);padding:80px 5%}
+    .ig-note{text-align:center;margin-bottom:2.5rem}
+    .ig-handle{
+      display:inline-flex;align-items:center;gap:.6rem;
+      background:linear-gradient(135deg,rgba(255,64,129,.12),rgba(139,47,232,.15));
+      border:1px solid rgba(180,80,255,.25);border-radius:50px;
+      padding:.6rem 1.4rem;font-size:1rem;font-weight:700;
+      color:#fff;text-decoration:none;transition:all .3s;margin-top:1rem
+    }
+    .ig-handle:hover{transform:scale(1.05);box-shadow:0 10px 35px rgba(139,47,232,.35)}
+    .ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:2.5rem}
+    .ig-card{aspect-ratio:1;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;
+      border:1px solid rgba(139,47,232,.12)}
+    .ig-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.2rem;transition:transform .38s}
+    .ig-inner img{width:100%;height:100%;object-fit:cover;transition:transform .38s}
+    .ig-card:hover .ig-inner,.ig-card:hover .ig-inner img{transform:scale(1.08)}
+    .ig-ov{position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(100,20,200,.72),rgba(0,200,83,.45));
+      opacity:0;transition:opacity .32s;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+    .ig-card:hover .ig-ov{opacity:1}
+    .ig-sub{text-align:center;margin-top:2rem;color:rgba(200,150,255,.4);font-size:.88rem}
+
+    /* ─── FOOTER ─── */
+    footer{
+      background:linear-gradient(180deg,#05000C,#020008);
+      padding:4rem 5% 2rem;border-top:1px solid rgba(139,47,232,.15)
+    }
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+    .foot-logo{font-size:2rem;font-weight:900;letter-spacing:-1px;display:block;margin-bottom:.9rem;
+      background:linear-gradient(130deg,#d580ff,var(--green));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .foot-about p{color:rgba(200,150,255,.35);font-size:.87rem;line-height:1.7;max-width:300px}
+    .foot-col h4{font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--green);margin-bottom:1.1rem}
+    .foot-col a{display:block;color:rgba(200,150,255,.4);text-decoration:none;
+      font-size:.87rem;margin-bottom:.6rem;transition:color .2s}
+    .foot-col a:hover{color:#fff}
+    .foot-bottom{display:flex;align-items:center;justify-content:space-between;
+      padding-top:1.8rem;border-top:1px solid rgba(139,47,232,.1);
+      font-size:.79rem;color:rgba(180,80,255,.28)}
+
+    /* ─── GRAD (non-hero) ─── */
+    .grad{background:linear-gradient(130deg,#d580ff 0%,var(--green) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* ─── SCROLL REVEAL ─── */
+    .fu{opacity:0;transform:translateY(36px);transition:opacity .65s ease,transform .65s ease}
+    .fu.vis{opacity:1;transform:none}
+
+    /* ─── RESPONSIVE ─── */
+
+    /* ── Tablet (≤900px) ── */
+    @media(max-width:900px){
+      section{padding:70px 4%}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .layers-grid,.about-grid,.loc-grid{grid-template-columns:1fr}
+      .foot-grid{grid-template-columns:1fr 1fr}
+      .ig-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-content{padding:120px 2rem 0 4%;max-width:100%}
+      .hero-content h1{font-size:clamp(1.5rem,3.5vw,2.6rem)}
+      .tab-row{gap:.35rem}
+      .tab{padding:.42rem .9rem;font-size:.77rem}
+      .tab-row-label{font-size:.58rem;min-width:44px}
+      .menu-grid{grid-template-columns:repeat(3,1fr);gap:.7rem}
+    }
+
+    /* ── Mobile (≤640px) ── */
+    @media(max-width:640px){
+      /* NAV */
+      .nav-links{display:none}
+      .nav-links.open{
+        display:flex;flex-direction:column;position:fixed;
+        inset:65px 0 0;background:rgba(9,0,15,.98);
+        padding:2rem 1.5rem;gap:.3rem;z-index:8999;overflow-y:auto
+      }
+      .nav-links.open a{padding:.8rem 0;font-size:1.1rem;border-bottom:1px solid rgba(139,47,232,.1)}
+      .ham{display:flex}
+
+      /* HERO — make video more visible */
+      .hero-overlay{
+        background:
+          linear-gradient(to right,rgba(9,0,15,.6) 0%,rgba(9,0,15,.3) 100%),
+          linear-gradient(to top,rgba(9,0,15,.65) 0%,transparent 50%),
+          linear-gradient(to bottom,rgba(9,0,15,.4) 0%,transparent 20%)
+      }
+      section{padding:55px 3%}
+      .hero-content{
+        padding:90px 1rem 0 1rem;
+        max-width:100%;text-align:left
+      }
+      .hero-content h1{
+        font-size:1.45rem;white-space:normal;letter-spacing:-.5px;line-height:1.2
+      }
+      .hero-sub{font-size:.83rem;margin-top:.6rem}
+      .badge{font-size:.68rem;padding:.32rem .85rem;animation:none;opacity:1;transform:none}
+      .pills{flex-wrap:wrap;gap:.35rem;animation:none;opacity:1;transform:none}
+      .pill{font-size:.68rem;padding:.28rem .68rem}
+      .ctas{flex-direction:column;gap:.6rem;animation:none;opacity:1;transform:none}
+      .ctas .btn{width:100%;text-align:center;padding:.8rem 1.2rem;font-size:.88rem}
+      #h1-line1,#h1-line2{animation:none;opacity:1;transform:none}
+      .hero-sub{animation:none;opacity:1;transform:none}
+
+      /* MENU TABS */
+      .tab-rows{gap:.35rem;margin:1rem 0 1.5rem}
+      .tab-row{gap:.25rem;flex-wrap:wrap}
+      .tab-row-label{font-size:.52rem;min-width:35px;padding-top:.1rem}
+      .tab{padding:.32rem .65rem;font-size:.68rem;border-radius:50px}
+      .ltd-tab{font-size:.68rem}
+
+      /* MENU GRID — 3x3 on mobile */
+      .menu-grid{grid-template-columns:repeat(3,1fr);gap:.5rem}
+      .mc{border-radius:10px}
+      .mc-img{height:100px;font-size:2rem}
+      .mc-body{padding:.6rem .65rem}
+      .mc-body h3{font-size:.72rem;font-weight:700;margin-bottom:.2rem}
+      .mc-body p{font-size:.6rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      .mc-tag{font-size:.55rem;padding:.12rem .4rem;margin-bottom:.25rem}
+      .price{font-size:.82rem}
+      .order-btn-sm{font-size:.62rem;padding:.22rem .5rem}
+
+      /* LAYERS — fit on one screen */
+      .layers-grid{grid-template-columns:1fr;gap:1.5rem}
+      .layer-tabs{flex-wrap:wrap;gap:.3rem;justify-content:center;margin-bottom:1.5rem}
+      .ltab{padding:.3rem .7rem;font-size:.68rem}
+      #layVis .cup-visual{max-height:220px;padding:1rem .8rem .8rem}
+      .lb{font-size:.7rem;padding:.35rem .6rem;margin-bottom:.35rem}
+      .cup-lbl{font-size:.72rem;margin-bottom:.8rem}
+      .li{gap:.7rem;margin-bottom:.8rem}
+      .li-icon{font-size:1.3rem;min-width:30px}
+      .li h4{font-size:.8rem}
+      .li p{font-size:.72rem}
+
+      /* ABOUT / STATS */
+      .about-grid{grid-template-columns:1fr;gap:2rem}
+      .stats-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+      .stat-n{font-size:2.2rem}
+
+      /* LOCATIONS — 3x3 (3 cols, 2 rows = all 6 visible) */
+      .loc-grid,.loc-grid-3{grid-template-columns:repeat(3,1fr);gap:.6rem}
+      .city-section{margin-bottom:1.5rem}
+      .loc-card{padding:1rem .85rem 1rem;border-radius:14px}
+      .loc-card h3{font-size:.78rem;margin-bottom:.25rem}
+      .loc-card .addr{font-size:.68rem;line-height:1.45;margin-bottom:.8rem}
+      .loc-icon{font-size:1.4rem;margin-bottom:.5rem}
+      .loc-btns{flex-direction:column;gap:.35rem}
+      .loc-btn{font-size:.62rem;padding:.28rem .6rem;justify-content:center}
+      .city-label{font-size:.58rem;margin-bottom:.7rem}
+
+      /* DELIVERY/ORDER — 3x3 */
+      .platforms{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;justify-items:center}
+      .plat{width:100%;min-width:unset;padding:1rem .6rem;border-radius:14px;gap:.35rem}
+      .plat .pi{font-size:1.5rem}
+      .plat .pn{font-size:.78rem}
+      .plat .ps{font-size:.62rem}
+
+      /* IG GRID */
+      .ig-grid{grid-template-columns:repeat(3,1fr) !important;gap:.4rem}
+
+      /* FOOTER */
+      .foot-grid{grid-template-columns:1fr;gap:1.5rem}
+      .foot-bottom{flex-direction:column;gap:.7rem;text-align:center}
+      .foot-about p{max-width:100%}
+
+      /* SECTION HEADINGS */
+      .sec-h{font-size:clamp(1.6rem,5.5vw,2.2rem)}
+      .sec-p{font-size:.83rem}
+    }
+
+    /* ── Small phones (≤400px) ── */
+    @media(max-width:400px){
+      .hero-content h1{font-size:1.35rem}
+      .ig-grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr}
+      .tab{padding:.33rem .65rem;font-size:.68rem}
+      .sec-h{font-size:1.6rem}
+      .ctas .btn{font-size:.85rem}
+    }
+
+    /* ══════════ PREMIUM ADDITIONS ══════════ */
+
+    /* Loading screen */
+    #loader{
+      position:fixed;inset:0;z-index:99999;background:#09000F;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;transition:opacity .8s ease,visibility .8s ease
+    }
+    #loader.fade{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-vid{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:contain;z-index:0;opacity:1;background:#09000F
+    }
+    .loader-overlay{
+      position:absolute;inset:0;z-index:1;
+      background:radial-gradient(ellipse at center,rgba(9,0,15,.55) 0%,rgba(9,0,15,.85) 100%)
+    }
+    .loader-content{
+      position:relative;z-index:2;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:2rem
+    }
+    .loader-logo{
+      font-size:clamp(2.8rem,8vw,5rem);font-weight:900;letter-spacing:-3px;
+      background:linear-gradient(130deg,#d580ff,#00E676);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:loaderPulse 1.4s ease-in-out infinite alternate;
+      text-shadow:none;line-height:1
+    }
+    .loader-tagline{
+      color:rgba(200,150,255,.55);font-size:clamp(.7rem,2.5vw,.82rem);
+      letter-spacing:2.5px;text-transform:uppercase;margin-top:.8rem;
+      animation:loaderPulse 1.8s ease-in-out infinite alternate
+    }
+    @keyframes loaderPulse{from{opacity:.55;transform:scale(.98)}to{opacity:1;transform:scale(1.02)}}
+    .loader-bar{
+      width:min(220px,60vw);height:3px;background:rgba(139,47,232,.2);border-radius:99px;
+      margin-top:2rem;overflow:hidden
+    }
+    .loader-fill{
+      height:100%;background:linear-gradient(90deg,#8B2FE8,#00E676,#FF4081);border-radius:99px;
+      width:0%;animation:loaderFill 2.2s cubic-bezier(.25,.46,.45,.94) forwards
+    }
+    @keyframes loaderFill{0%{width:0%}100%{width:100%}}
+
+    /* Scroll progress */
+    #scroll-prog{
+      position:fixed;top:0;left:0;height:3px;z-index:10000;width:0%;
+      background:linear-gradient(90deg,#8B2FE8,#00E676,#FF4081);
+      transition:width .08s linear;box-shadow:0 0 12px rgba(139,47,232,.6)
+    }
+
+    /* Custom cursor — logo */
+    body{cursor:none}
+    a,button,.plat,.mc,.ig-card,.loc-card,.tab,.scroll-hint{cursor:none}
+    #cur-dot{
+      position:fixed;width:34px;height:34px;
+      background:url('Logo.jpg') center/cover no-repeat;
+      border-radius:50%;border:1.5px solid rgba(213,128,255,.35);
+      pointer-events:none;z-index:99998;transform:translate(-50%,-50%);
+      transition:transform .1s ease,opacity .2s;
+      filter:drop-shadow(0 0 10px rgba(139,47,232,.6));
+      box-shadow:0 0 0 2px rgba(139,47,232,.18)
+    }
+    #cur-ring{
+      position:fixed;width:52px;height:52px;border:1.5px solid rgba(213,128,255,.25);
+      border-radius:50%;pointer-events:none;z-index:99997;
+      transform:translate(-50%,-50%);transition:transform .22s ease,width .22s,height .22s,border-color .22s,opacity .2s
+    }
+    .cursor-hover #cur-dot{transform:translate(-50%,-50%) scale(1.25);filter:drop-shadow(0 0 18px rgba(0,230,118,.7))}
+    .cursor-hover #cur-ring{width:72px;height:72px;border-color:rgba(0,230,118,.4)}
+    @media(hover:none){body{cursor:auto}a,button{cursor:pointer}#cur-dot,#cur-ring{display:none}}
+
+    /* City location cards */
+    .city-section{margin-bottom:3rem}
+    .city-label{
+      display:inline-flex;align-items:center;gap:.6rem;
+      font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--green);margin-bottom:1.2rem
+    }
+    .city-label::before{content:'';display:block;width:18px;height:2px;background:var(--green);border-radius:2px}
+    .city-label .city-dot{
+      width:8px;height:8px;border-radius:50%;background:var(--green);
+      box-shadow:0 0 8px var(--green);animation:cityPulse 2s infinite
+    }
+    @keyframes cityPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
+    .loc-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+
+    /* Menu card image upgrade */
+    .mc-img{position:relative;overflow:hidden}
+    .mc-img::before{
+      content:'';position:absolute;inset:0;z-index:1;
+      background:linear-gradient(180deg,transparent 40%,rgba(9,0,15,.5) 100%)
+    }
+    .mc-img .img-bg{
+      width:100%;height:100%;background-size:cover;background-position:center;
+      transition:transform .5s ease
+    }
+    .mc:hover .img-bg{transform:scale(1.07)}
+
+    /* Card tilt effect */
+    .mc{transform-style:preserve-3d;will-change:transform}
+
+    /* Shimmer loading */
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    .mc-img.loading{
+      background:linear-gradient(90deg,rgba(139,47,232,.05) 25%,rgba(139,47,232,.12) 50%,rgba(139,47,232,.05) 75%);
+      background-size:200% 100%;animation:shimmer 1.5s infinite
+    }
+
+    /* Stats counter */
+    .stat-n{transition:color .3s}
+    .stat.counted .stat-n{
+      background:linear-gradient(135deg,#d580ff,#00E676);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+    }
+
+    /* About section upgrades */
+    .about-text p{position:relative;z-index:2}
+    .about-text .checks{position:relative;z-index:2}
+    .about-photo{position:relative;z-index:2}
+    .about-photo img,.about-photo .about-vid{
+      border-radius:22px;width:100%;aspect-ratio:1/1;object-fit:contain;
+      background:#09000F;
+      box-shadow:0 30px 80px rgba(100,20,200,.35),0 0 0 1px rgba(139,47,232,.15);
+      transition:transform .5s ease;display:block
+    }
+    .about-photo img:hover,.about-photo .about-vid:hover{transform:scale(1.02) translateY(-5px)}
+    .about-photo::after{
+      content:'';position:absolute;inset:-3px;border-radius:24px;z-index:-1;
+      background:linear-gradient(135deg,rgba(139,47,232,.35),rgba(0,200,83,.15));
+      filter:blur(18px)
+    }
+
+    /* Premium section reveal animation */
+    .fu{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .fu.vis{opacity:1;transform:none}
+
+    /* Smooth hover glow on nav links */
+    .nav-links a:not(.order-btn):hover{color:#fff;text-shadow:0 0 20px rgba(213,128,255,.5)}
+
+    /* IG cards improved */
+    .ig-card{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+    .ig-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 20px 50px rgba(100,20,200,.3)}
+
+    /* Loc card enhanced */
+    .loc-card:hover{
+      border-color:rgba(0,230,118,.35);transform:translateY(-8px);
+      box-shadow:0 25px 70px rgba(0,180,80,.15),0 0 0 1px rgba(0,230,118,.1)
+    }
+
+    /* Platform card glow */
+    .plat:hover{
+      box-shadow:0 25px 60px rgba(100,20,200,.3),0 0 30px rgba(139,47,232,.15)
+    }
+
+    /* Floating badge */
+    .hero-content .badge{
+      position:relative;overflow:hidden
+    }
+    .hero-content .badge::after{
+      content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+      animation:badgeShine 3s ease-in-out infinite;transform:skewX(-20deg)
+    }
+    @keyframes badgeShine{0%,100%{left:-60%}50%{left:120%}}
+
+    /* Mobile cursor off */
+    @media(hover:none){#cur-dot,#cur-ring{display:none}}
+
+    /* Mobile loc grid */
+    @media(max-width:900px){
+      .loc-grid-3{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:640px){
+      .loc-grid-3{grid-template-columns:repeat(3,1fr);gap:.5rem}
+    }
+  </style>
+</head>
+<body>
+<!-- Cursor -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<!-- Scroll progress -->
+<div id="scroll-prog"></div>
+<!-- Loader -->
+<div id="loader">
+  <video class="loader-vid" id="loaderVid" autoplay muted playsinline>
+    <source src="Logo_Vid 2.mp4" type="video/mp4">
+  </video>
+  <div class="loader-overlay"></div>
+  <div class="loader-content">
+    <div class="loader-logo">SIP N DIP</div>
+    <div class="loader-tagline">✦ New Zealand's Premium Dessert Bar ✦</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
+<!-- ═════════════ NAV ═════════════ -->
+<nav id="nav">
+  <div class="logo-wrap">
+    <img src="Logo.jpg" class="logo-img" alt="SIP N DIP logo"/>
+    <div class="logo">SIP N DIP</div>
+  </div>
+  <div class="nav-links" id="nl">
+    <a href="#menu">Menu</a>
+    <a href="#layers">Our Layers</a>
+    <a href="#locations">Locations</a>
+    <a href="#about">About</a>
+    <a href="https://www.instagram.com/sipndip_christchurch/" target="_blank">Instagram ↗</a>
+    <a href="#order" class="order-btn">Order Now</a>
+  </div>
+  <div class="ham" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═════════════ HERO ═════════════ -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="dubai-pistachio-cup-vid.mp4" type="video/mp4">
+  </video>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="badge">★ Christchurch's #1 Desserts</div>
+    <h1 id="h1-line1">NOT JUST A DESSERT…</h1>
+    <h1 id="h1-line2"><span class="grad-shimmer">It's a whole experience you'll want to repeat</span></h1>
+    <p class="hero-sub">Christchurch's favourite loaded dessert cups. Fresh strawberries, Dubai pistachio cream, chocolate drizzles, crispy knafeh &amp; more — layered to perfection in every cup.<br><br>Sweet, crunchy, creamy… dangerously addictive.</p>
+    <div class="pills">
+      <span class="pill g">🍓 Fresh Daily</span>
+      <span class="pill p">✨ Dubai Pistachio</span>
+      <span class="pill pk">🥥 Coconut Snow</span>
+      <span class="pill">Handcrafted to Order</span>
+    </div>
+    <div class="ctas">
+      <a href="#order" class="btn btn-g">Order Now →</a>
+      <a href="#menu" class="btn btn-o">View Full Menu</a>
+    </div>
+  </div>
+  <a href="#menu" class="scroll-hint">
+    <span>Scroll</span><div class="scroll-arrow"></div>
+  </a>
+</section>
+
+<!-- ═════════════ MARQUEE ═════════════ -->
+<div class="mq-wrap">
+  <div class="mq-track">
+    <span class="a">★ SIP N DIP</span><span>Authentic Açaí &amp; Dessert Bar</span>
+    <span class="a">★ Dubai Pistachio Soft Serve</span><span>Fresh Strawberry Cups</span>
+    <span class="a">★ Hornby &amp; Colombo St</span><span>Christchurch, New Zealand</span>
+    <span class="a">★ Order on Uber Eats &amp; DoorDash</span><span>@sipndip_christchurch</span>
+    <span class="a">★ SIP N DIP</span><span>Authentic Açaí &amp; Dessert Bar</span>
+    <span class="a">★ Dubai Pistachio Soft Serve</span><span>Fresh Strawberry Cups</span>
+    <span class="a">★ Hornby &amp; Colombo St</span><span>Christchurch, New Zealand</span>
+    <span class="a">★ Order on Uber Eats &amp; DoorDash</span><span>@sipndip_christchurch</span>
+  </div>
+</div>
+
+<!-- ═════════════ MENU ═════════════ -->
+<section id="menu">
+  <div class="inner">
+    <div class="sec-label fu">Our Menu</div>
+    <h2 class="sec-h fu">Full Menu</h2>
+    <p class="sec-p fu">Every cup, bowl and sip handcrafted with premium ingredients — Dubai-inspired flavours meet fresh New Zealand produce.</p>
+    <div class="tab-rows">
+      <!-- Row 1: Featured -->
+      <div class="tab-row">
+        <span class="tab-row-label">Top</span>
+        <button class="tab active" onclick="filterMenu('fav',this)">⭐ Favourites</button>
+        <button class="tab ltd-tab" onclick="filterMenu('kitkat',this)">⚡ KIT-KAT Range</button>
+      </div>
+      <!-- Row 2: Food categories -->
+      <div class="tab-row">
+        <span class="tab-row-label">Food</span>
+        <button class="tab" onclick="filterMenu('softserve',this)">🍦 Soft Serve</button>
+        <button class="tab" onclick="filterMenu('bliss',this)">🌟 Açaí Bliss Bowls</button>
+        <button class="tab" onclick="filterMenu('strawberry',this)">🍓 Strawberry Cups</button>
+        <button class="tab" onclick="filterMenu('cake',this)">🎂 Cheesecakes</button>
+        <button class="tab" onclick="filterMenu('brownie',this)">🍫 Loaded Brownies</button>
+        <button class="tab" onclick="filterMenu('treleches',this)">🎂 Tres Leches</button>
+      </div>
+      <!-- Row 3: Drinks -->
+      <div class="tab-row">
+        <span class="tab-row-label">Drinks</span>
+        <button class="tab" onclick="filterMenu('shake',this)">🥤 Milkshakes</button>
+        <button class="tab" onclick="filterMenu('protein',this)">💪 Protein Shakes</button>
+        <button class="tab" onclick="filterMenu('mocktail',this)">🍹 Mocktails</button>
+        <button class="tab" onclick="filterMenu('coffee',this)">☕ Coffee &amp; Hot</button>
+        <button class="tab" onclick="filterMenu('iced',this)">🧊 Iced Drinks</button>
+        <button class="tab" onclick="filterMenu('matcha',this)">🍵 Matcha</button>
+        <button class="tab" onclick="filterMenu('wellness',this)">🌿 Wellness</button>
+      </div>
+    </div>
+    <div class="menu-grid" id="menuGrid">
+
+      <!-- ══ FAVOURITES ══ -->
+      <div class="mc show" data-cat="fav">
+        <div class="mc-img"><img src="dubai-pistachio-cup.jpg" alt="Dubai Pistachio Strawberry Cup"/></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🔥 #1 Best Seller</span>
+          <h3>Dubai Pistachio Strawberry Cup</h3>
+          <p>Fresh strawberries · Dubai pistachio sauce · Chocolate layers · Coconut flakes</p>
+          <div class="mc-foot"><span class="price">$28.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc show" data-cat="fav">
+        <div class="mc-img"><img src="dubai-knafeh-bowl.png" alt="Dubai Knafeh Bowl"/></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🔥 Must Try</span>
+          <h3>Dubai Knafeh Bowl</h3>
+          <p>Organic Açaí · Granola · Seasonal fruits · Crispy knafeh · Pistachio &amp; milk choc sauce</p>
+          <div class="mc-foot"><span class="price">$35.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc show" data-cat="fav">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">⭐ Popular</span>
+          <h3>Pistachio Bliss Bowl</h3>
+          <p>Organic Açaí · Granola · Pistachio sauce · Pistachio crumbs · Coconut flakes · Seasonal fruits</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc show" data-cat="fav">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-dub">✨ Dubai</span>
+          <h3>Dubai Bueno Brownie</h3>
+          <p>Warm brownie · Kinder Bueno sauce · Vanilla soft serve · Chocolate · Caramel · Hazelnut</p>
+          <div class="mc-foot"><span class="price">$22.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc show" data-cat="fav">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🔥 Premium Pick</span>
+          <h3>Biscoff Baddie</h3>
+          <p>Açaí bliss bowl · Biscoff sauce &amp; toppings · Crunchy almond flakes · Strawberries · Banana</p>
+          <div class="mc-foot"><span class="price">$38.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc show" data-cat="fav">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-cake">🎂 Cheesecake</span>
+          <h3>Bueno Cheesecake</h3>
+          <p>Creamy cheesecake · Kinder Bueno sauce · Bueno stick · Handcrafted daily</p>
+          <div class="mc-foot"><span class="price">$20.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ SOFT SERVE MENU ══ -->
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img"><img src="dubai-knafeh-bowl.png" alt="Dubai Knafeh Bowl"/></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🔥 Must Try</span>
+          <h3>Dubai Knafeh Bowl</h3>
+          <p>Organic Açaí · Granola · Seasonal fruits · Crispy knafeh · Pistachio &amp; milk choc sauce</p>
+          <div class="mc-foot"><span class="price">$35.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>Dubai Biscoff Bowl</h3>
+          <p>Organic Açaí · Biscoff sauce · Biscoff crumbs &amp; biscuit · Seasonal fruits · Crunchy granola</p>
+          <div class="mc-foot"><span class="price">$32.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>Kinder Joy Bowl</h3>
+          <p>Organic Açaí · Crunchy Granola · Kinder Bueno sauce &amp; toppings · Coconut flakes · Seasonal fruits</p>
+          <div class="mc-foot"><span class="price">$32.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>OG Nutella Bowl</h3>
+          <p>Organic Açaí · Crunchy Granola · Seasonal fruits · Loaded Nutella sauce · Nutella toppings · Oreo crumbs</p>
+          <div class="mc-foot"><span class="price">$32.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>Berry Bowl</h3>
+          <p>Organic Açaí · Crunchy Granola · Strawberry sauce · Milk chocolate sauce · Strawberry toppings</p>
+          <div class="mc-foot"><span class="price">$32.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>Açaí Bowl (Large)</h3>
+          <p>Organic Açaí · Granola · Bananas · Seasonal fruits</p>
+          <div class="mc-foot"><span class="price">$31.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>Açaí Baby Bowl</h3>
+          <p>Organic Açaí · Granola · Seasonal fruits</p>
+          <div class="mc-foot"><span class="price">$25.99</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>Regular Cup</h3>
+          <p>Organic Açaí · Granola · Bananas · Seasonal fruits</p>
+          <div class="mc-foot"><span class="price">$19.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="softserve">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">🫐 Açaí</span>
+          <h3>Large Bowl</h3>
+          <p>Organic Açaí · Granola · Bananas · Seasonal fruits</p>
+          <div class="mc-foot"><span class="price">$18.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ KIT-KAT LIMITED ══ -->
+      <div class="mc" data-cat="kitkat">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1481391319572-0c66e72f9d3b?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-dub">⚡ Limited Time</span>
+          <h3>KIT-KAT Bowl (Large)</h3>
+          <p>Organic Açaí · Granola · Seasonal fruits · Kit-Kat sauce · Kit-Kat crumbs &amp; stick</p>
+          <div class="mc-foot"><span class="price">$32.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="kitkat">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1548365328-8c6db3220e4c?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-dub">⚡ Limited Time</span>
+          <h3>KIT-KAT Bowl (Regular)</h3>
+          <p>Organic Açaí · Crunchy granola · Seasonal fruits · Kit-Kat sauce · crumbs &amp; stick</p>
+          <div class="mc-foot"><span class="price">$28.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="kitkat">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1547592180-85f173990554?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-dub">⚡ Limited Time</span>
+          <h3>KIT-KAT Baby Bowl</h3>
+          <p>Organic Açaí · Granola · Seasonal fruits · Kit-Kat sauce · crumbs &amp; stick</p>
+          <div class="mc-foot"><span class="price">$20.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ AÇAÍ BLISS BOWLS ══ -->
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:linear-gradient(135deg,#0a1400,#0e0020)">🫐🥜</div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">⭐ Popular</span>
+          <h3>Pistachio Bliss Bowl</h3>
+          <p>Organic Açaí · Granola · Pistachio sauce · Pistachio crumbs · Coconut flakes · Seasonal fruits</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:linear-gradient(135deg,#181000,#0e0018)">🫐🥜</div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">⭐ Bliss</span>
+          <h3>Peanut Butter Bliss Bowl</h3>
+          <p>Açaí · Granola · Peanut butter · Nutella drizzle · Almonds · Walnuts · Banana · Strawberry</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">⭐ Bliss</span>
+          <h3>Protein Bliss Bowl</h3>
+          <p>Açaí · Granola · Whey protein · Chia seeds · Almond flakes · Strawberry · Banana · Honey</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1552130786-76a5a9fc7699?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">⭐ Bliss</span>
+          <h3>Rio Bliss Bowl</h3>
+          <p>Açaí · Crunchy granola · Seasonal fruits · Coconut shreds · Honey</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1587668178277-295251f900ce?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">⭐ Bliss</span>
+          <h3>Radiance Bliss Bowl</h3>
+          <p>Organic Açaí · Seasonal fruits · Crunchy granola · Collagen · Goji berry · Passionfruit topping</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">⭐ Bliss</span>
+          <h3>Choc Protein Bliss Bowl</h3>
+          <p>Chocolate protein packed bliss bowl · Fresh fruits · Peanut butter · Milk choc sauce · Mixed nuts</p>
+          <div class="mc-foot"><span class="price">$35.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🔥 Premium</span>
+          <h3>Biscoff Baddie</h3>
+          <p>Açaí bliss bowl · Biscoff sauce &amp; toppings · Crunchy almond flakes · Strawberries · Banana</p>
+          <div class="mc-foot"><span class="price">$38.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="bliss">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-acai">⭐ Bliss</span>
+          <h3>Amazon Bliss Bowl</h3>
+          <p>Organic Açaí · Crunchy granola · Seasonal fruits · Condensed milk · Milk powder · Almond nuts &amp; flakes</p>
+          <div class="mc-foot"><span class="price">$35.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ FRESH STRAWBERRY CUPS ══ -->
+      <div class="mc" data-cat="strawberry">
+        <div class="mc-img"><img src="dubai-pistachio-cup.jpg" alt="Dubai Pistachio Strawberry Cup"/></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🔥 #1 Best Seller</span>
+          <h3>Dubai Pistachio Strawberry Cup</h3>
+          <p>Fresh strawberries · Dubai pistachio sauce · Chocolate layers · Coconut flakes</p>
+          <div class="mc-foot"><span class="price">$28.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="strawberry">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=480&h=320&fit=crop&q=80') center/cover no-repeat">
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-sig">★ Signature</span>
+          <h3>Milk Chocolate Strawberry Cup</h3>
+          <p>Fresh strawberries · Rich milk chocolate sauce · Chocolate chunks</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="strawberry">
+        <div class="mc-img" style="background:linear-gradient(135deg,#1a0800,#180018)">🍫🥜</div>
+        <div class="mc-body">
+          <span class="mc-tag t-sig">★ Signature</span>
+          <h3>Milk Choc Nutella Strawberry Cup</h3>
+          <p>Fresh strawberries · Milk chocolate · Nutella fusion</p>
+          <div class="mc-foot"><span class="price">$25.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ CHEESECAKES ══ -->
+      <div class="mc" data-cat="cake">
+        <div class="mc-img" style="background:linear-gradient(135deg,#120018,#1a0c00)">🎂✨</div>
+        <div class="mc-body">
+          <span class="mc-tag t-cake">🎂 Cheesecake</span>
+          <h3>Bueno Cheesecake</h3>
+          <p>Creamy cheesecake · Kinder Bueno sauce · Bueno stick · Handcrafted daily</p>
+          <div class="mc-foot"><span class="price">$20.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="cake">
+        <div class="mc-img" style="background:linear-gradient(135deg,#0a1200,#140018)">🎂🥜</div>
+        <div class="mc-body">
+          <span class="mc-tag t-cake">🎂 Cheesecake</span>
+          <h3>Pistachio Cheesecake</h3>
+          <p>Creamy pistachio cheesecake · Pistachio sauce · Handcrafted daily</p>
+          <div class="mc-foot"><span class="price">$20.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="cake">
+        <div class="mc-img" style="background:linear-gradient(135deg,#180a00,#100018)">🎂🍫</div>
+        <div class="mc-body">
+          <span class="mc-tag t-cake">🎂 Cheesecake</span>
+          <h3>Nutella Cheesecake</h3>
+          <p>Creamy cheesecake · Nutella sauce · Hazelnut richness · Handcrafted daily</p>
+          <div class="mc-foot"><span class="price">$20.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="cake">
+        <div class="mc-img" style="background:linear-gradient(135deg,#14000a,#160c00)">🎂🍪</div>
+        <div class="mc-body">
+          <span class="mc-tag t-cake">🎂 Cheesecake</span>
+          <h3>Biscoff Cheesecake</h3>
+          <p>Creamy cheesecake · Biscoff sauce · Biscoff crumb base · Handcrafted daily</p>
+          <div class="mc-foot"><span class="price">$20.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ LOADED BROWNIES ══ -->
+      <div class="mc" data-cat="brownie">
+        <div class="mc-img" style="background:linear-gradient(135deg,#1c0a00,#120020)">🍫✨</div>
+        <div class="mc-body">
+          <span class="mc-tag t-dub">✨ Dubai</span>
+          <h3>Dubai Bueno Brownie</h3>
+          <p>Warm brownie · Kinder Bueno sauce · Vanilla soft serve · Chocolate · Caramel · Hazelnut</p>
+          <div class="mc-foot"><span class="price">$22.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="brownie">
+        <div class="mc-img" style="background:linear-gradient(135deg,#180800,#100010)">🍫</div>
+        <div class="mc-body">
+          <span class="mc-tag t-brownie">🍫 Brownie</span>
+          <h3>Belgian Chocolate Brownie</h3>
+          <p>Warm brownie · Rich Belgian chocolate sauce · Fudgy centre · Handcrafted daily</p>
+          <div class="mc-foot"><span class="price">$20.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ TRES LECHES ══ -->
+      <div class="mc" data-cat="treleches">
+        <div class="mc-img" style="background:linear-gradient(135deg,#100010,#180a00)">🎂🍪</div>
+        <div class="mc-body">
+          <span class="mc-tag t-brownie">🎂 Tres Leches</span>
+          <h3>Nutella × Oreo Tres Leches</h3>
+          <p>Tres Leches cake · Nutella · Oreo</p>
+          <div class="mc-foot"><span class="price">$22.49</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="treleches">
+        <div class="mc-img" style="background:linear-gradient(135deg,#0e0010,#180800)">🎂🍫</div>
+        <div class="mc-body">
+          <span class="mc-tag t-brownie">🎂 Tres Leches</span>
+          <h3>Kit-Kat Tres Leches</h3>
+          <p>Tres Leches cake · Kit-Kat</p>
+          <div class="mc-foot"><span class="price">$22.49</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ MILKSHAKES ══ -->
+      <div class="mc" data-cat="shake">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1572635526722-21c46d545a5c?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🥤 Signature</span>
+          <h3>Biscoff Milkshake</h3>
+          <p>Lotus Biscoff sauce · Vanilla ice cream · Biscoff crumbs · Whipped cream</p>
+          <div class="mc-foot"><span class="price">$14.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="shake">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍫 Rich</span>
+          <h3>Nutella Milkshake</h3>
+          <p>Thick Nutella blend · Vanilla ice cream · Chocolate drizzle · Oreo crumbs</p>
+          <div class="mc-foot"><span class="price">$14.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="shake">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-lim">✨ Dubai Special</span>
+          <h3>Dubai Pistachio Shake</h3>
+          <p>Pistachio sauce · Premium vanilla ice cream · Coconut flakes · Pistachio crumbs</p>
+          <div class="mc-foot"><span class="price">$15.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="shake">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍓 Fresh</span>
+          <h3>Strawberry &amp; Cream Shake</h3>
+          <p>Fresh NZ strawberries · Vanilla ice cream · Strawberry syrup · Whipped cream</p>
+          <div class="mc-foot"><span class="price">$14.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ PROTEIN SHAKES ══ -->
+      <div class="mc" data-cat="protein">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">💪 #1 Protein</span>
+          <h3>Choc PB Protein Shake</h3>
+          <p>Chocolate protein powder · Peanut butter · Banana · Almond milk · Ice</p>
+          <div class="mc-foot"><span class="price">$14.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="protein">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍌 Clean</span>
+          <h3>Banana Vanilla Protein</h3>
+          <p>Banana · Vanilla protein · Oat milk · Honey · Chia seeds</p>
+          <div class="mc-foot"><span class="price">$14.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="protein">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🫐 Berry Boost</span>
+          <h3>Mixed Berry Protein Blast</h3>
+          <p>Mixed berries · Vanilla protein powder · Almond milk · Hemp seeds</p>
+          <div class="mc-foot"><span class="price">$14.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ MOCKTAILS ══ -->
+      <div class="mc" data-cat="mocktail">
+        <div class="mc-img" style="position:relative;overflow:hidden">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
+            <source src="apple-mocktail.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🍎 #1 Mocktail</span>
+          <h3>Apple Fizz Mocktail</h3>
+          <p>Fresh apple · Mint · Lime · Sparkling water · Apple syrup</p>
+          <div class="mc-foot"><span class="price">$11.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="mocktail">
+        <div class="mc-img" style="position:relative;overflow:hidden">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
+            <source src="chilled-watermelon-mocktail.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="mc-body">
+          <span class="mc-tag t-lim">🍉 Summer Fave</span>
+          <h3>Chilled Watermelon Mocktail</h3>
+          <p>Fresh watermelon · Mint · Lime fizz · Rose syrup · Ice</p>
+          <div class="mc-foot"><span class="price">$11.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="mocktail">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1560526860-1f0e56046973?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🥭 Tropical</span>
+          <h3>Mango Passion Fizz</h3>
+          <p>Mango · Passionfruit · Lime · Sparkling water · Fresh mint</p>
+          <div class="mc-foot"><span class="price">$11.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="mocktail">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">💙 Vibrant</span>
+          <h3>Blue Lagoon</h3>
+          <p>Lemonade · Blue curacao syrup · Fresh lime · Sparkling water · Ice</p>
+          <div class="mc-foot"><span class="price">$11.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ COFFEE & HOT ══ -->
+      <div class="mc" data-cat="coffee">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">☕ Favourite</span>
+          <h3>Flat White</h3>
+          <p>Double espresso · Silky steamed NZ milk · Micro-foam</p>
+          <div class="mc-foot"><span class="price">$7.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="coffee">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1517959105821-eaf2591984d2?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍫 Cosy</span>
+          <h3>Hot Chocolate</h3>
+          <p>Rich dark chocolate · Steamed NZ milk · Whipped cream · Cocoa dusting</p>
+          <div class="mc-foot"><span class="price">$8.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="coffee">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1561047029-3000c68339ca?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🌶 Spiced</span>
+          <h3>Chai Latte</h3>
+          <p>Spiced chai concentrate · Steamed oat milk · Cinnamon · Light honey</p>
+          <div class="mc-foot"><span class="price">$8.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="coffee">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍵 Ceremonial</span>
+          <h3>Matcha Latte</h3>
+          <p>Ceremonial grade matcha · Steamed oat milk · Light honey sweetness</p>
+          <div class="mc-foot"><span class="price">$9.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ ICED DRINKS ══ -->
+      <div class="mc" data-cat="iced">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🧊 Best Seller</span>
+          <h3>Iced Latte</h3>
+          <p>Double espresso · Cold NZ milk · Ice · Optional flavoured syrup</p>
+          <div class="mc-foot"><span class="price">$9.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="iced">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍵 Refreshing</span>
+          <h3>Iced Matcha Latte</h3>
+          <p>Ceremonial matcha · Coconut milk · Ice · Light sweetness</p>
+          <div class="mc-foot"><span class="price">$10.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="iced">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍫 Rich</span>
+          <h3>Iced Chocolate</h3>
+          <p>Dark chocolate syrup · Cold NZ milk · Ice · Whipped cream · Cocoa</p>
+          <div class="mc-foot"><span class="price">$9.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="iced">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🌶 Spiced Ice</span>
+          <h3>Iced Chai</h3>
+          <p>Spiced chai · Cold oat milk · Ice · Brown sugar syrup</p>
+          <div class="mc-foot"><span class="price">$9.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ MATCHA ══ -->
+      <div class="mc" data-cat="matcha">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🍵 #1 Matcha</span>
+          <h3>Coconut Cloud Matcha</h3>
+          <p>Ceremonial matcha · Coconut cream cold foam · Oat milk · Light sweetness</p>
+          <div class="mc-foot"><span class="price">$12.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="matcha">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🌿 Classic</span>
+          <h3>Classic Matcha Latte</h3>
+          <p>Ceremonial grade matcha · Oat milk · Light honey · Whisk-aerated</p>
+          <div class="mc-foot"><span class="price">$10.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="matcha">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-lim">🍓 Signature</span>
+          <h3>Matcha Strawberry Latte</h3>
+          <p>Ceremonial matcha · Fresh strawberry · Coconut milk · Rose syrup · Ice</p>
+          <div class="mc-foot"><span class="price">$12.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="matcha">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🍦 Treat</span>
+          <h3>Matcha Soft Serve</h3>
+          <p>Ceremonial matcha soft serve · Coconut flakes · Pistachio crumbs · Drizzle</p>
+          <div class="mc-foot"><span class="price">$12.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+      <!-- ══ WELLNESS ══ -->
+      <div class="mc" data-cat="wellness">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag t-new">🌿 #1 Wellness</span>
+          <h3>Green Goddess</h3>
+          <p>Spinach · Banana · Mango · Chia seeds · Coconut water · Honey</p>
+          <div class="mc-foot"><span class="price">$13.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="wellness">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🫐 Antioxidant</span>
+          <h3>Mixed Berry Blast</h3>
+          <p>Strawberry · Blueberry · Raspberry · Organic açaí · Coconut water</p>
+          <div class="mc-foot"><span class="price">$12.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="wellness">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">🥜 Fuel</span>
+          <h3>Banana PB Smoothie</h3>
+          <p>Banana · Peanut butter · Oat milk · Honey · Hemp seeds · Protein</p>
+          <div class="mc-foot"><span class="price">$13.00</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+      <div class="mc" data-cat="wellness">
+        <div class="mc-img" style="background:url('https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=480&h=320&fit=crop&q=80') center/cover"></div>
+        <div class="mc-body">
+          <span class="mc-tag">💛 Anti-Inflammatory</span>
+          <h3>Golden Turmeric Smoothie</h3>
+          <p>Turmeric · Mango · Ginger · Coconut milk · Honey · Black pepper</p>
+          <div class="mc-foot"><span class="price">$12.50</span><a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="order-btn-sm">Order ↗</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ LAYERS ═════════════ -->
+<section id="layers">
+  <div class="inner">
+    <div class="sec-label fu" style="text-align:center">What's Inside</div>
+    <h2 class="sec-h fu" style="text-align:center">Every Product,<br><span class="grad">Every Layer</span></h2>
+    <p class="sec-p fu" style="text-align:center;max-width:560px;margin:0 auto 2.5rem">From our signature Strawberry Cups to Açaí Bowls, Brownies and Milkshakes — every item is crafted in layers of premium ingredients.</p>
+
+    <!-- Product tabs -->
+    <div class="layer-tabs fu">
+      <button class="ltab active" onclick="showLayer(0,this)">🍓 Strawberry Cup</button>
+      <button class="ltab" onclick="showLayer(1,this)">🫐 Açaí Bowl</button>
+      <button class="ltab" onclick="showLayer(2,this)">🍦 Soft Serve</button>
+      <button class="ltab" onclick="showLayer(3,this)">🎂 Cheesecake</button>
+      <button class="ltab" onclick="showLayer(4,this)">🍫 Brownie</button>
+      <button class="ltab" onclick="showLayer(5,this)">🥤 Milkshake</button>
+    </div>
+
+    <div class="layers-grid">
+      <!-- LEFT: layer list (updates via JS) -->
+      <div id="layVis">
+        <div class="cup-visual">
+          <div class="cup-lbl" id="lay-title">Fresh Strawberry Cup</div>
+          <div class="lb lb5" id="l5">🥥 Coconut Flakes</div>
+          <div class="lb lb4" id="l4">🟢 Dubai Pistachio Cream</div>
+          <div class="lb lb3" id="l3">🍓 Fresh NZ Strawberries</div>
+          <div class="lb lb2" id="l2">🍫 Belgian Chocolate Sauce</div>
+          <div class="lb lb1" id="l1">🌾 Granola Base</div>
+        </div>
+      </div>
+      <!-- RIGHT: descriptions -->
+      <div id="lay-desc">
+        <div class="layer-list" id="lay-list">
+          <div class="li fu vis"><span class="li-icon">🌾</span><div><h4>Crunchy Granola Base</h4><p>House-made granola with caramelised nuts — the satisfying crunch in every spoonful.</p></div></div>
+          <div class="li fu vis"><span class="li-icon">🍫</span><div><h4>Rich Belgian Chocolate Sauce</h4><p>Premium Belgian chocolate poured warm, pooling into a silky, indulgent layer.</p></div></div>
+          <div class="li fu vis"><span class="li-icon">🍓</span><div><h4>Fresh NZ Strawberries</h4><p>Locally sourced, picked-fresh strawberries. Sweet, fragrant, and never frozen.</p></div></div>
+          <div class="li fu vis"><span class="li-icon">🟢</span><div><h4>Dubai Pistachio Cream</h4><p>The star — lush pistachio cream, swirled thick and impossibly smooth.</p></div></div>
+          <div class="li fu vis"><span class="li-icon">🥥</span><div><h4>Toasted Coconut Snow</h4><p>Fine coconut flakes, lightly toasted, raining down for the perfect finishing touch.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ LOCATIONS ═════════════ -->
+<section id="locations">
+  <div class="inner">
+    <div class="sec-label fu">Find Us</div>
+    <h2 class="sec-h fu">Now Across<br><span class="grad">New Zealand</span></h2>
+    <p class="sec-p fu">From Christchurch to Auckland to Tauranga — SIP N DIP is bringing Dubai-inspired desserts nationwide. Find your nearest location below.</p>
+
+    <!-- CHRISTCHURCH -->
+    <div class="city-section fu">
+      <div class="city-label"><span class="city-dot"></span>Christchurch</div>
+      <div class="loc-grid-3">
+        <div class="loc-card fu">
+          <div class="loc-icon">📍</div>
+          <h3>Hornby / Sockburn</h3>
+          <div class="addr">222 Main South Road<br>Hornby, Christchurch<br><br>📦 Uber Eats · DoorDash</div>
+          <div class="loc-btns">
+            <a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="loc-btn primary">🛵 Uber Eats</a>
+            <a href="https://www.doordash.com/store/sip-n-dip-christchurch-38186033/" target="_blank" class="loc-btn">🚀 DoorDash</a>
+            <a href="https://maps.google.com/?q=222+Main+South+Road+Hornby+Christchurch" target="_blank" class="loc-btn">📍 Directions</a>
+          </div>
+        </div>
+        <div class="loc-card fu">
+          <div class="loc-icon">📍</div>
+          <h3>Colombo St — City Centre</h3>
+          <div class="addr">574 Colombo Street<br>Christchurch City Centre<br><br>📦 Uber Eats · DoorDash</div>
+          <div class="loc-btns">
+            <a href="https://www.ubereats.com/nz/store/sip-n-dip-colombo/zraaB7vkWC-wxKJ9W68oFQ" target="_blank" class="loc-btn primary">🛵 Uber Eats</a>
+            <a href="https://www.doordash.com/store/sip-n-dip-christchurch-38186033/" target="_blank" class="loc-btn">🚀 DoorDash</a>
+            <a href="https://maps.google.com/?q=574+Colombo+Street+Christchurch" target="_blank" class="loc-btn">📍 Directions</a>
+          </div>
+        </div>
+        <div class="loc-card fu" style="border-color:rgba(255,200,50,.2);background:rgba(255,180,0,.04)">
+          <div class="loc-icon">🔜</div>
+          <h3>Ilam <span style="font-size:.72rem;font-weight:600;background:linear-gradient(90deg,#f5c518,#ff9800);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px">COMING SOON</span></h3>
+          <div class="addr" style="color:rgba(255,200,100,.5)">Ilam, Christchurch<br><br>🚧 Opening soon — stay tuned for the address reveal!</div>
+          <div class="loc-btns">
+            <a href="https://www.instagram.com/sipndip_christchurch/" target="_blank" class="loc-btn" style="border-color:rgba(255,180,0,.3);color:rgba(255,180,80,.7)">📸 Follow for updates</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUCKLAND -->
+    <div class="city-section fu">
+      <div class="city-label"><span class="city-dot"></span>Auckland</div>
+      <div class="loc-grid-3">
+        <div class="loc-card fu">
+          <div class="loc-icon">📍</div>
+          <h3>Epsom</h3>
+          <div class="addr">258 Manukau Road<br>Epsom, Auckland<br><br>🕙 10:00am – 11:00pm Daily</div>
+          <div class="loc-btns">
+            <a href="https://www.ubereats.com/nz/store/sip-n-dip-epsom/YE1lDhpSX12yIRl27dhzxQ" target="_blank" class="loc-btn primary">🛵 Uber Eats</a>
+            <a href="https://www.doordash.com/en/store/sip-n-dip-(epsom)-auckland-40331525/" target="_blank" class="loc-btn">🚀 DoorDash</a>
+            <a href="https://maps.google.com/?q=258+Manukau+Road+Epsom+Auckland" target="_blank" class="loc-btn">📍 Directions</a>
+          </div>
+        </div>
+        <div class="loc-card fu">
+          <div class="loc-icon">📍</div>
+          <h3>Papakura / Ōpaheke</h3>
+          <div class="addr">373 Great South Road<br>Ōpaheke, Papakura<br>at BP 2go</div>
+          <div class="loc-btns">
+            <a href="https://www.ubereats.com/nz/store/sip-n-dip-opaheke/Nkv-HAL-W5CCxEYcf4KI6Q" target="_blank" class="loc-btn primary">🛵 Uber Eats</a>
+            <a href="https://www.doordash.com/en-NZ/store/sip-n-dip-papakura-33771731/" target="_blank" class="loc-btn">🚀 DoorDash</a>
+            <a href="https://maps.google.com/?q=373+Great+South+Road+Opaheke+Papakura" target="_blank" class="loc-btn">📍 Directions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAURANGA -->
+    <div class="city-section fu">
+      <div class="city-label"><span class="city-dot"></span>Tauranga</div>
+      <div class="loc-grid-3">
+        <div class="loc-card fu">
+          <div class="loc-icon">📍</div>
+          <h3>Otumoetai</h3>
+          <div class="addr">269 Ngatai Road<br>Otumoetai, Tauranga<br><br>🕙 7 Days · 10:00am – Midnight</div>
+          <div class="loc-btns">
+            <a href="https://www.ubereats.com/nz/store/sip-n-dip-tauranga/DsxhwZFZXbKmLeqyktQqSA" target="_blank" class="loc-btn primary">🛵 Uber Eats</a>
+            <a href="https://www.doordash.com/en-NZ/store/sip-n-dip-tauranga-tauranga-35364939/" target="_blank" class="loc-btn">🚀 DoorDash</a>
+            <a href="https://maps.google.com/?q=269+Ngatai+Road+Otumoetai+Tauranga" target="_blank" class="loc-btn">📍 Directions</a>
+          </div>
+        </div>
+        <div class="loc-card fu">
+          <div class="loc-icon">📍</div>
+          <h3>Tauranga Crossing</h3>
+          <div class="addr">Tauranga Crossing<br>Shopping Centre<br>Tauranga</div>
+          <div class="loc-btns">
+            <a href="https://www.ubereats.com/nz/store/sip-n-dip-tauranga-crossing/NDPPKOXxW76dgZwkhRWpgQ" target="_blank" class="loc-btn primary">🛵 Uber Eats</a>
+            <a href="https://maps.google.com/?q=Tauranga+Crossing+Shopping+Centre+Tauranga" target="_blank" class="loc-btn">📍 Directions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════ STATS ═════════════ -->
+<section id="stats">
+  <div class="inner">
+    <div class="stats-grid">
+      <div class="stat fu"><div class="stat-n counter" data-target="6">6</div><div class="stat-l">NZ Locations</div></div>
+      <div class="stat fu"><div class="stat-n counter" data-target="3">3</div><div class="stat-l">Cities Nationwide</div></div>
+      <div class="stat fu"><div class="stat-n">15.5K+</div><div class="stat-l">Instagram Followers</div></div>
+      <div class="stat fu"><div class="stat-n">★4.9</div><div class="stat-l">Customer Rating</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ ABOUT ═════════════ -->
+<section id="about">
+  <div class="inner about-grid">
+    <div class="about-photo fu">
+      <video autoplay muted loop playsinline class="about-vid">
+        <source src="Logo_Vid 2.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="about-text">
+      <div class="sec-label fu">Our Story</div>
+      <h2 class="sec-h fu">New Zealand's Most<br>Instagram-Worthy Dessert</h2>
+      <p class="fu">SIP N DIP is New Zealand's premium Açaí &amp; Dessert Bar — born from a love of photogenic, Dubai-inspired desserts that taste as incredible as they look.</p>
+      <p class="fu">What started in Christchurch has grown nationwide, now serving across Auckland and Tauranga too. Every cup is handcrafted to order, layering NZ-fresh ingredients with Middle-Eastern-inspired flavours.</p>
+      <div class="checks">
+        <div class="ck fu">Locally sourced NZ strawberries, fresh daily</div>
+        <div class="ck fu">Authentic Dubai Pistachio cream &amp; soft serve</div>
+        <div class="ck fu">Organic açaí — 100% real, no fillers</div>
+        <div class="ck fu">Every cup handcrafted to order</div>
+        <div class="ck fu">6 locations across NZ — Christchurch, Auckland &amp; Tauranga</div>
+        <div class="ck fu">Order via Uber Eats &amp; DoorDash nationwide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ ORDER ═════════════ -->
+<section id="order">
+  <div class="inner">
+    <div class="order-inner">
+      <div class="sec-label fu">Delivery</div>
+      <h2 class="sec-h fu">Order Now,<br><span class="grad">Nationwide Delivery</span></h2>
+      <p class="fu">Available on Uber Eats and DoorDash across all NZ locations — Christchurch, Auckland &amp; Tauranga. Fresh desserts delivered to your door.</p>
+      <div class="platforms fu">
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank" class="plat">
+          <span class="pi">🛵</span><span class="pn">Uber Eats</span><span class="ps">Hornby, Christchurch</span>
+        </a>
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-colombo/zraaB7vkWC-wxKJ9W68oFQ" target="_blank" class="plat">
+          <span class="pi">🛵</span><span class="pn">Uber Eats</span><span class="ps">Colombo St, Christchurch</span>
+        </a>
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-epsom/YE1lDhpSX12yIRl27dhzxQ" target="_blank" class="plat">
+          <span class="pi">🛵</span><span class="pn">Uber Eats</span><span class="ps">Epsom, Auckland</span>
+        </a>
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-opaheke/Nkv-HAL-W5CCxEYcf4KI6Q" target="_blank" class="plat">
+          <span class="pi">🛵</span><span class="pn">Uber Eats</span><span class="ps">Papakura, Auckland</span>
+        </a>
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-tauranga/DsxhwZFZXbKmLeqyktQqSA" target="_blank" class="plat">
+          <span class="pi">🛵</span><span class="pn">Uber Eats</span><span class="ps">Tauranga</span>
+        </a>
+        <a href="https://www.doordash.com/store/sip-n-dip-christchurch-38186033/" target="_blank" class="plat">
+          <span class="pi">🚀</span><span class="pn">DoorDash</span><span class="ps">Christchurch</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ INSTAGRAM ═════════════ -->
+<section id="social">
+  <div class="inner">
+    <div class="sec-label fu" style="display:block;text-align:center">Instagram</div>
+    <h2 class="sec-h fu" style="text-align:center">Follow the Drip 📸</h2>
+    <div class="ig-note fu">
+      <p style="color:rgba(200,150,255,.5);font-size:.9rem">Tag us in your SIP N DIP moments</p>
+      <a href="https://www.instagram.com/sipndip_christchurch/" target="_blank" class="ig-handle">
+        📸 @sipndip_christchurch &nbsp;·&nbsp; 15.5K+ across 5 accounts
+      </a>
+    </div>
+    <div class="ig-grid" style="grid-template-columns:repeat(3,1fr)">
+      <!-- Real Sip N Dip content — photos -->
+      <div class="ig-card fu">
+        <div class="ig-inner"><img src="dubai-pistachio-cup.jpg" alt="Dubai Pistachio Strawberry Cup" loading="lazy"/></div>
+        <div class="ig-ov"><span>❤️</span></div>
+        <div class="ig-label">Dubai Pistachio Cup</div>
+      </div>
+      <div class="ig-card fu">
+        <div class="ig-inner"><img src="dubai-knafeh-bowl.png" alt="Dubai Knafeh Bowl" loading="lazy"/></div>
+        <div class="ig-ov"><span>❤️</span></div>
+        <div class="ig-label">Dubai Knafeh Bowl</div>
+      </div>
+      <!-- Reels — autoplay videos -->
+      <div class="ig-card ig-reel fu">
+        <video autoplay muted loop playsinline class="ig-vid">
+          <source src="apple-mocktail.mp4" type="video/mp4">
+        </video>
+        <div class="reel-icon">▶ Reel</div>
+        <div class="ig-ov"><span>🎬</span></div>
+        <div class="ig-label">Apple Fizz Mocktail</div>
+      </div>
+      <div class="ig-card ig-reel fu">
+        <video autoplay muted loop playsinline class="ig-vid">
+          <source src="chilled-watermelon-mocktail.mp4" type="video/mp4">
+        </video>
+        <div class="reel-icon">▶ Reel</div>
+        <div class="ig-ov"><span>🎬</span></div>
+        <div class="ig-label">Watermelon Mocktail</div>
+      </div>
+      <div class="ig-card ig-reel fu">
+        <video autoplay muted loop playsinline class="ig-vid">
+          <source src="dubai-knafeh-bowl-vid.mp4" type="video/mp4">
+        </video>
+        <div class="reel-icon">▶ Reel</div>
+        <div class="ig-ov"><span>🎬</span></div>
+        <div class="ig-label">Knafeh Bowl Drop</div>
+      </div>
+      <div class="ig-card ig-reel fu">
+        <video autoplay muted loop playsinline class="ig-vid">
+          <source src="regular-bowl.mp4" type="video/mp4">
+        </video>
+        <div class="reel-icon">▶ Reel</div>
+        <div class="ig-ov"><span>🎬</span></div>
+        <div class="ig-label">Classic Açaí Bowl</div>
+      </div>
+    </div>
+    <p class="ig-sub fu">📲 Follow for new flavours, daily specials &amp; behind-the-scenes cup content</p>
+  </div>
+</section>
+
+<!-- ═════════════ FOOTER ═════════════ -->
+<footer>
+  <div class="inner">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <span class="foot-logo">SIP N DIP</span>
+        <p>New Zealand's premium Açaí &amp; Dessert Bar. Handcrafted with Dubai-inspired flavours across 6 locations in Christchurch, Auckland &amp; Tauranga.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Order</h4>
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-sockburn/wuUcBpusW9KLTWSKEDcWAQ" target="_blank">Uber Eats — Christchurch ↗</a>
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-epsom/YE1lDhpSX12yIRl27dhzxQ" target="_blank">Uber Eats — Auckland ↗</a>
+        <a href="https://www.ubereats.com/nz/store/sip-n-dip-tauranga/DsxhwZFZXbKmLeqyktQqSA" target="_blank">Uber Eats — Tauranga ↗</a>
+        <a href="https://www.doordash.com/store/sip-n-dip-christchurch-38186033/" target="_blank">DoorDash ↗</a>
+      </div>
+      <div class="foot-col">
+        <h4>Locations</h4>
+        <a href="https://maps.google.com/?q=222+Main+South+Road+Hornby+Christchurch" target="_blank">Hornby, Christchurch ↗</a>
+        <a href="https://maps.google.com/?q=574+Colombo+Street+Christchurch" target="_blank">Colombo St, Christchurch ↗</a>
+        <a href="https://maps.google.com/?q=258+Manukau+Road+Epsom+Auckland" target="_blank">Epsom, Auckland ↗</a>
+        <a href="https://maps.google.com/?q=373+Great+South+Road+Opaheke" target="_blank">Papakura, Auckland ↗</a>
+        <a href="https://maps.google.com/?q=269+Ngatai+Road+Otumoetai+Tauranga" target="_blank">Otumoetai, Tauranga ↗</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/sipndip_christchurch/" target="_blank">@sipndip_christchurch ↗</a>
+        <a href="https://www.instagram.com/sipndip_epsom/" target="_blank">@sipndip_epsom ↗</a>
+        <a href="https://www.instagram.com/sipndip_tga/" target="_blank">@sipndip_tga ↗</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About Us</a>
+        <a href="#order">Order Now</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SIP N DIP · New Zealand · Christchurch · Auckland · Tauranga</span>
+      <span>Made with 💜 &amp; Dubai Pistachio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═════════════ HERO CANVAS — DESSERT AURORA ═════════════ -->
+<script>
+(function(){
+  var C = document.getElementById('hero-canvas');
+  var ctx = C.getContext('2d');
+  var W, H, mouse = {x: 0, y: 0};
+
+  function resize(){
+    W = C.width  = window.innerWidth;
+    H = C.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; });
+
+  /* ── Aurora blobs ── */
+  var blobs = [
+    { cx:.72, cy:.35, rx:.38, ry:.32, sx:.00055, sy:.0007, px:0,    py:1.1,  r:520, col:'rgba(120,30,220,' },
+    { cx:.25, cy:.55, rx:.28, ry:.25, sx:.0007,  sy:.00045,px:2.1,  py:0,    r:400, col:'rgba(180,20,120,' },
+    { cx:.55, cy:.75, rx:.22, ry:.30, sx:.0006,  sy:.0008, px:4.2,  py:2.8,  r:340, col:'rgba(100,20,200,' },
+    { cx:.85, cy:.20, rx:.18, ry:.20, sx:.0008,  sy:.0005, px:1.5,  py:3.5,  r:260, col:'rgba(200,80,255,' },
+    { cx:.15, cy:.25, rx:.20, ry:.18, sx:.0005,  sy:.0009, px:3.3,  py:1.8,  r:300, col:'rgba(60,0,140,'   },
+    { cx:.50, cy:.50, rx:.15, ry:.15, sx:.0009,  sy:.0006, px:5.1,  py:4.2,  r:200, col:'rgba(0,180,90,'   },
+  ];
+
+  /* ── Dessert particles ── */
+  var TYPES = ['drip','berry','flake','sprinkle','cream','pistachio'];
+  var COLORS = {
+    drip:      ['rgba(80,30,5,',  'rgba(120,50,10,', 'rgba(60,20,2,'],
+    berry:     ['rgba(200,20,50,','rgba(180,10,40,', 'rgba(220,30,60,'],
+    flake:     ['rgba(255,245,220,','rgba(240,225,195,'],
+    sprinkle:  ['rgba(180,80,255,','rgba(0,230,118,','rgba(255,64,129,','rgba(255,200,50,'],
+    cream:     ['rgba(255,240,200,','rgba(255,250,235,'],
+    pistachio: ['rgba(80,160,50,', 'rgba(60,140,40,'],
+  };
+
+  function mkParticle(){
+    var type = TYPES[Math.floor(Math.random()*TYPES.length)];
+    var colors = COLORS[type];
+    return {
+      type: type,
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random()-.5) * 0.3,
+      vy: 0.15 + Math.random() * 0.35,
+      size: type==='cream' ? 6+Math.random()*10 : 2+Math.random()*4,
+      rot: Math.random() * Math.PI * 2,
+      rotV: (Math.random()-.5) * 0.02,
+      alpha: 0.12 + Math.random() * 0.28,
+      col: colors[Math.floor(Math.random()*colors.length)],
+      phase: Math.random() * Math.PI * 2,
+    };
+  }
+
+  var particles = [];
+  for(var i=0; i<90; i++){
+    var p = mkParticle();
+    p.y = Math.random() * H; // spread initial y
+    particles.push(p);
+  }
+
+  function drawParticle(p){
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.globalAlpha = p.alpha;
+
+    if(p.type === 'drip'){
+      // teardrop
+      ctx.fillStyle = p.col + '1)';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size * 0.45, p.size * 1.1, 0, 0, Math.PI*2);
+      ctx.fill();
+    } else if(p.type === 'berry'){
+      ctx.fillStyle = p.col + '1)';
+      ctx.beginPath();
+      ctx.arc(0, 0, p.size, 0, Math.PI*2);
+      ctx.fill();
+    } else if(p.type === 'flake'){
+      // thin rectangle
+      ctx.fillStyle = p.col + '1)';
+      ctx.fillRect(-p.size*1.4, -p.size*0.28, p.size*2.8, p.size*0.55);
+    } else if(p.type === 'sprinkle'){
+      ctx.fillStyle = p.col + '1)';
+      ctx.fillRect(-p.size*0.7, -p.size*0.22, p.size*1.4, p.size*0.45);
+    } else if(p.type === 'cream'){
+      // soft big circle, very transparent
+      var g = ctx.createRadialGradient(0,0,0, 0,0,p.size);
+      g.addColorStop(0, p.col + '0.18)');
+      g.addColorStop(1, p.col + '0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(0, 0, p.size, 0, Math.PI*2);
+      ctx.fill();
+    } else if(p.type === 'pistachio'){
+      ctx.fillStyle = p.col + '1)';
+      ctx.fillRect(-p.size*.7, -p.size*.7, p.size*1.4, p.size*1.4);
+    }
+    ctx.restore();
+  }
+
+  var t = 0;
+
+  function frame(){
+    requestAnimationFrame(frame);
+    t += 0.0008;
+
+    /* Clear — video is behind this canvas, keep transparent */
+    ctx.clearRect(0, 0, W, H);
+
+    /* Aurora blobs — subtle purple tint over video */
+    ctx.globalCompositeOperation = 'screen';
+    blobs.forEach(function(b){
+      var bx = b.cx * W + Math.sin(t * b.sx * 6000 + b.px) * b.rx * W;
+      var by = b.cy * H + Math.cos(t * b.sy * 6000 + b.py) * b.ry * H;
+
+      // subtle mouse parallax on top two blobs
+      if(b === blobs[0] || b === blobs[1]){
+        bx += (mouse.x - W*.5) * 0.018;
+        by += (mouse.y - H*.5) * 0.012;
+      }
+
+      var g = ctx.createRadialGradient(bx, by, 0, bx, by, b.r);
+      g.addColorStop(0,   b.col + '0.28)');
+      g.addColorStop(0.4, b.col + '0.10)');
+      g.addColorStop(1,   b.col + '0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(bx, by, b.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalCompositeOperation = 'source-over';
+
+    /* Particles */
+    particles.forEach(function(p){
+      p.x += p.vx + Math.sin(t * 800 + p.phase) * 0.15;
+      p.y += p.vy;
+      p.rot += p.rotV;
+      if(p.y > H + 20){ Object.assign(p, mkParticle()); p.x = Math.random()*W; p.y = -20; }
+      if(p.x < -20) p.x = W + 20;
+      if(p.x > W + 20) p.x = -20;
+      drawParticle(p);
+    });
+
+    /* Scanline grain — very subtle */
+    ctx.globalAlpha = 0.018;
+    ctx.fillStyle = '#fff';
+    for(var i=0; i<H; i+=3){
+      if(Math.random() > 0.85) ctx.fillRect(0, i, W, 1);
+    }
+    ctx.globalAlpha = 1;
+  }
+  frame();
+})();
+</script>
+
+<!-- Three.js removed for performance -->
+
+<!-- ═════════════ SITE JS ═════════════ -->
+<script>
+/* Scroll reveal */
+var fus = document.querySelectorAll('.fu');
+new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); } });
+},{threshold:0.1, rootMargin:'0px 0px -30px 0px'}).observe
+// Use forEach
+;(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); } });
+  },{threshold:0.1, rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.fu').forEach(function(el){ io.observe(el); });
+})();
+
+/* Layer bars */
+(function(){
+  var lbIds = ['l1','l2','l3','l4','l5'];
+  var lv = document.getElementById('layVis');
+  if(!lv) return;
+  new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      lbIds.forEach(function(id,i){
+        setTimeout(function(){ var el=document.getElementById(id); if(el) el.classList.add('vis'); }, i*170);
+      });
+    }
+  },{threshold:0.25}).observe(lv);
+})();
+
+/* Navbar */
+var lastScroll = 0;
+window.addEventListener('scroll', function(){
+  var nav = document.getElementById('nav');
+  var cur = window.scrollY;
+  nav.classList.toggle('scrolled', cur > 55);
+  nav.classList.toggle('hidden', cur > lastScroll && cur > 120);
+  lastScroll = cur;
+});
+
+/* Menu tabs */
+function filterMenu(cat, btn){
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.mc').forEach(function(c){
+    c.classList.toggle('show', c.dataset.cat===cat);
+  });
+}
+
+/* Mobile nav */
+function toggleNav(){ document.getElementById('nl').classList.toggle('open'); }
+
+/* Product layer switcher */
+var LAYER_DATA = [
+  { title:'Fresh Strawberry Cup', layers:['🥥 Coconut Flakes','🟢 Dubai Pistachio Cream','🍓 Fresh NZ Strawberries','🍫 Belgian Chocolate Sauce','🌾 Granola Base'],
+    desc:[['🌾','Crunchy Granola Base','House-made granola with caramelised nuts — the satisfying crunch in every spoonful.'],
+          ['🍫','Rich Belgian Chocolate Sauce','Premium Belgian chocolate poured warm, pooling into a silky, indulgent layer.'],
+          ['🍓','Fresh NZ Strawberries','Locally sourced, picked-fresh strawberries. Sweet, fragrant, and never frozen.'],
+          ['🟢','Dubai Pistachio Cream','The star — lush pistachio cream, swirled thick and impossibly smooth.'],
+          ['🥥','Toasted Coconut Snow','Fine coconut flakes, lightly toasted, raining down for the perfect finishing touch.']]},
+  { title:'Açaí Bliss Bowl', layers:['🥜 Pistachio & Granola Top','🍓 Fresh Seasonal Fruits','🫐 Organic Açaí Layer','🍯 Raw Honey Drizzle','🌾 Granola & Nut Base'],
+    desc:[['🌾','Crunchy Granola Base','Premium granola with caramelised nuts and seeds — the foundation of every bowl.'],
+          ['🍯','Raw Honey Drizzle','Light NZ raw honey, adding a delicate natural sweetness throughout.'],
+          ['🫐','Organic Açaí Blend','100% real organic açaí — rich, earthy, and loaded with antioxidants.'],
+          ['🍓','Fresh Seasonal Fruits','NZ-fresh strawberries, blueberries and banana, handcut to order.'],
+          ['🥜','Pistachio & Granola Crown','Crushed pistachios, extra granola crunch, and a pistachio sauce finish.']]},
+  { title:'Dubai Pistachio Soft Serve', layers:['🥥 Coconut Flake Snow','🍫 Chocolate Drizzle','🟢 Pistachio Soft Serve Swirl','🌿 Pistachio Crumbs','🍪 Cone / Cup Base'],
+    desc:[['🍪','Premium Cone or Cup','Crispy waffle cone or a branded SIP N DIP cup — your choice.'],
+          ['🌿','Pistachio Crumb Coating','Crushed roasted pistachios pressed into the soft serve for that signature Dubai crunch.'],
+          ['🟢','Pistachio Soft Serve','Our hallmark — silky, vivid green Dubai pistachio soft serve, swirled to perfection.'],
+          ['🍫','Chocolate Sauce Drizzle','Warm Belgian chocolate drizzled over the swirl for contrast and depth.'],
+          ['🥥','Coconut Flake Finish','Fine toasted coconut flakes rained down over the top for texture.']]},
+  { title:'Loaded Cheesecake', layers:['🍓 Fruit & Sauce Crown','🧁 Whipped Cream Top','🎂 Cream Cheese Layer','🍮 Sauce Centre','🍪 Biscuit Crumb Base'],
+    desc:[['🍪','Biscuit Crumb Base','Crushed Biscoff or graham crackers, buttered and pressed into a firm, crumbly foundation.'],
+          ['🍮','Sauce Swirl Centre','Biscoff, Nutella or pistachio sauce baked into the cheesecake for a hidden flavour hit.'],
+          ['🎂','Smooth Cream Cheese Layer','Velvety whipped cream cheese with a light sweetness and airy texture.'],
+          ['🧁','Whipped Cream Top','A generous swirl of fresh whipped cream crowning the cheesecake.'],
+          ['🍓','Fruit & Sauce Crown','Fresh strawberries, sauce drizzle, and toppings — the Instagram-worthy finish.']]},
+  { title:'Loaded Brownie', layers:['🥜 Pistachio & Toppings','🟢 Pistachio Spread','🍦 Vanilla Ice Cream','🍫 Dark Chocolate Sauce','🍫 Fudge Brownie Base'],
+    desc:[['🍫','Fudge Brownie Base','Rich, dense chocolate brownie — baked in-house, gooey in the middle, crisp at the edge.'],
+          ['🍫','Dark Chocolate Sauce','Premium dark chocolate sauce poured over the warm brownie.'],
+          ['🍦','Vanilla Ice Cream','A scoop of premium vanilla ice cream, melting into the warm brownie.'],
+          ['🟢','Pistachio Spread Layer','Dubai pistachio cream spread generously over the ice cream.'],
+          ['🥜','Crushed Pistachios & Flakes','Crunchy pistachio bits and coconut flakes finish the Dubai-style brownie.']]},
+  { title:'Milkshake', layers:['🍫 Sauce Drizzle Crown','🧁 Whipped Cream','🍓 Flavour Swirl','🍨 Premium Ice Cream Blend','🥛 Fresh NZ Milk Base'],
+    desc:[['🥛','Fresh NZ Milk Base','Cold, creamy NZ whole milk — the smooth foundation of every shake.'],
+          ['🍨','Premium Ice Cream Blend','Thick-blended vanilla ice cream creating that rich, indulgent milkshake body.'],
+          ['🍓','Signature Flavour Swirl','Biscoff, Nutella, pistachio, or strawberry sauce blended through for flavour depth.'],
+          ['🧁','Fresh Whipped Cream','Generous fresh whipped cream piped on top.'],
+          ['🍫','Sauce Drizzle & Garnish','Chocolate or caramel drizzle and a signature garnish for the perfect finish.']]}
+];
+
+function showLayer(idx, btn){
+  document.querySelectorAll('.ltab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  var d = LAYER_DATA[idx];
+  // Update title
+  document.getElementById('lay-title').textContent = d.title;
+  // Update layer bars (l1-l5 from bottom to top)
+  var layIds = ['l1','l2','l3','l4','l5'];
+  d.layers.forEach(function(txt, i){
+    var el = document.getElementById(layIds[i]);
+    if(el) el.textContent = txt;
+  });
+  // Update description list
+  var list = document.getElementById('lay-list');
+  if(list){
+    list.innerHTML = d.desc.map(function(item){
+      return '<div class="li fu vis"><span class="li-icon">'+item[0]+'</span><div><h4>'+item[1]+'</h4><p>'+item[2]+'</p></div></div>';
+    }).join('');
+  }
+  // Re-trigger bar animation
+  var vis = document.getElementById('layVis');
+  if(vis){
+    layIds.forEach(function(id){ var el = document.getElementById(id); if(el){ el.classList.remove('vis'); setTimeout(function(){ el.classList.add('vis'); },50); }});
+  }
+}
+
+/* Char split */
+(function(){
+  if(window.innerWidth < 640) return;
+  var el = document.getElementById('h1-line1');
+  if(!el) return;
+  var text = el.textContent, html = '', delay = 0.35;
+  text.split('').forEach(function(ch){
+    if(ch===' '){
+      html += '<span class="char-wrap" style="width:.28em"> </span>';
+    } else {
+      html += '<span class="char-wrap"><span class="char" style="animation-delay:'+delay.toFixed(3)+'s">'+ch+'</span></span>';
+      delay += 0.045;
+    }
+  });
+  el.innerHTML = html;
+})();
+</script>
+
+<!-- ═════════════ PREMIUM JS ═════════════ -->
+<script>
+(function(){
+  /* ── Loading screen — always show on visit ── */
+  (function(){
+    var loader = document.getElementById('loader');
+    var vid = document.getElementById('loaderVid');
+    if(!loader) return;
+    document.body.style.overflow = 'hidden';
+    function dismiss(){
+      loader.classList.add('fade');
+      setTimeout(function(){ document.body.style.overflow = ''; }, 800);
+    }
+    if(vid){
+      // Wait for video to end, with 6s safety cap
+      var fallback = setTimeout(dismiss, 6000);
+      vid.addEventListener('ended', function(){
+        clearTimeout(fallback);
+        dismiss();
+      });
+      // If video can't load, fallback after 3s
+      vid.addEventListener('error', function(){ clearTimeout(fallback); setTimeout(dismiss,500); });
+    } else {
+      setTimeout(dismiss, 2600);
+    }
+  })();
+
+  /* ── Scroll progress bar ── */
+  var prog = document.getElementById('scroll-prog');
+  window.addEventListener('scroll', function(){
+    if(!prog) return;
+    var scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    prog.style.width = Math.min(100, scrolled) + '%';
+  }, {passive:true});
+
+  /* ── Custom cursor ── */
+  var dot = document.getElementById('cur-dot');
+  var ring = document.getElementById('cur-ring');
+  var mouseX=0, mouseY=0, ringX=0, ringY=0;
+
+  if(dot && ring && window.matchMedia('(hover:hover)').matches){
+    document.addEventListener('mousemove', function(e){
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX+'px';
+      dot.style.top  = mouseY+'px';
+    });
+
+    (function animRing(){
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX+'px';
+      ring.style.top  = ringY+'px';
+      requestAnimationFrame(animRing);
+    })();
+
+    document.querySelectorAll('a, button, .plat, .mc, .ig-card, .loc-card').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ document.body.classList.add('cursor-hover'); });
+      el.addEventListener('mouseleave', function(){ document.body.classList.remove('cursor-hover'); });
+    });
+  }
+
+  /* ── Card 3D tilt ── */
+  document.querySelectorAll('.mc, .plat, .loc-card').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width  - 0.5;
+      var y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = 'perspective(600px) rotateY('+(x*8)+'deg) rotateX('+(-y*8)+'deg) translateY(-6px)';
+    });
+    card.addEventListener('mouseleave', function(){
+      card.style.transform = '';
+    });
+  });
+
+  /* ── Counter animation ── */
+  document.querySelectorAll('.counter').forEach(function(el){
+    var target = parseFloat(el.dataset.target);
+    var io = new IntersectionObserver(function(entries){
+      if(!entries[0].isIntersecting) return;
+      io.disconnect();
+      var start = 0, duration = 1800, startTime = null;
+      function step(ts){
+        if(!startTime) startTime = ts;
+        var prog = Math.min((ts - startTime) / duration, 1);
+        var ease = 1 - Math.pow(1-prog, 3);
+        var val = Math.round(ease * target);
+        el.textContent = val + (target > 100 ? '+' : '');
+        if(prog < 1) requestAnimationFrame(step);
+        else el.textContent = target + (el.dataset.target.includes('+') ? '+' : '');
+      }
+      requestAnimationFrame(step);
+    }, {threshold:0.5});
+    io.observe(el);
+  });
+
+  /* ── Parallax hero content ── */
+  var heroContent = document.querySelector('.hero-content');
+  window.addEventListener('scroll', function(){
+    if(!heroContent) return;
+    var sy = window.scrollY;
+    if(sy < window.innerHeight){
+      heroContent.style.transform = 'translateY('+(sy*.25)+'px)';
+      heroContent.style.opacity = 1 - (sy / (window.innerHeight * .7));
+    }
+  }, {passive:true});
+
+  /* ── Stagger reveal for menu cards ── */
+  var mcObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var cards = e.target.querySelectorAll('.mc.show');
+        cards.forEach(function(c, i){
+          setTimeout(function(){ c.style.opacity='1'; c.style.transform='translateY(0)'; }, i*60);
+        });
+        mcObs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.05});
+  var menuGrid = document.querySelector('.menu-grid');
+  if(menuGrid) mcObs.observe(menuGrid);
+
+})();
+</script>
+</body>
+</html>
